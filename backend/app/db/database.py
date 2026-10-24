@@ -243,3 +243,13 @@ class LocalDatabaseManager:
             c.execute("SELECT * FROM findings WHERE institution_id = ?", (institution_id,))
             rows = c.fetchall()
             return [dict(row) for row in rows]
+
+    def insert_document(self, document_id: str, institution_id: str, document_type: str, filename: str, file_path: str, sha256_hash: str, dhash: Optional[str] = None):
+        with self.get_connection() as conn:
+            c = conn.cursor()
+            c.execute("""
+            INSERT OR REPLACE INTO documents (
+                document_id, institution_id, document_type, filename, file_path, sha256_hash, dhash
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (document_id, institution_id, document_type, filename, file_path, sha256_hash, dhash))
+            conn.commit()

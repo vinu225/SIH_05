@@ -34,13 +34,16 @@ import {
   Clock,
   ArrowRight,
   ExternalLink,
-  Plus,
   LayoutDashboard,
+  Plus,
   Filter,
   CheckSquare,
   Square,
   Sparkles,
   BookOpen,
+  UploadCloud,
+  Upload,
+  FileUp,
 } from 'lucide-react';
 
 interface FindingRecord {
@@ -110,6 +113,19 @@ export default function App() {
   const [aphRules, setAphRules] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [timelineFilterStatus, setTimelineFilterStatus] = useState<string>('ALL');
+
+  // Upload modal state
+  const [showUploadModal, setShowUploadModal] = useState<boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
+  const [uploadDocType, setUploadDocType] = useState<string>('Fire_Safety_NOC');
+  const [uploadScenarioTarget, setUploadScenarioTarget] = useState<string>('CURRENT');
+  const [customScenarioId, setCustomScenarioId] = useState<string>('');
+  const [customInstitutionName, setCustomInstitutionName] = useState<string>('');
+  const [uploadResult, setUploadResult] = useState<any>(null);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+  const [dragActive, setDragActive] = useState<boolean>(false);
+  const [uploadedDocsList, setUploadedDocsList] = useState<string[]>([]);
 
   // Load scenarios & rules on mount
   useEffect(() => {
@@ -195,6 +211,63 @@ export default function App() {
         setAuditEvents(data.events || []);
       })
       .catch((err) => console.error('Failed to load audit trail:', err));
+  };
+
+  const handleFileUpload = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!uploadFile) {
+      setUploadError('Please select a PDF, PNG, or JPEG file to upload.');
+      return;
+    }
+    setUploading(true);
+    setUploadError(null);
+    setUploadResult(null);
+
+    const targetScenario =
+      uploadScenarioTarget === 'NEW'
+        ? (customScenarioId.trim().toUpperCase() || `INST-${Date.now().toString().slice(-4)}`)
+        : selectedScenario;
+
+    const formData = new FormData();
+    formData.append('file', uploadFile);
+    formData.append('scenario_id', targetScenario);
+    formData.append('document_type', uploadDocType);
+    if (uploadScenarioTarget === 'NEW' && customInstitutionName) {
+      formData.append('institution_name', customInstitutionName);
+    }
+
+    try {
+      const res = await fetch('/api/v1/documents/upload', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.detail || 'Upload failed');
+      }
+
+      setUploadResult(data);
+      setUploading(false);
+
+      // Track uploaded document name
+      if (!uploadedDocsList.includes(data.filename)) {
+        setUploadedDocsList((prev) => [...prev, data.filename]);
+      }
+
+      // Refresh scenarios list & load scenario
+      fetch('/api/v1/scenarios')
+        .then((r) => r.json())
+        .then((sData) => {
+          if (sData.scenarios) setScenarios(sData.scenarios);
+        });
+
+      loadScenario(targetScenario);
+      setActiveDocument(data.filename);
+      fetchAuditTrail();
+    } catch (err: any) {
+      setUploadError(err.message || 'An error occurred during upload.');
+      setUploading(false);
+    }
   };
 
   const allFindings: FindingRecord[] = evaluationData?.findings || [];
@@ -295,7 +368,16 @@ export default function App() {
           >
             <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-blue-600' : ''}`} />
           </button>
-          <div className="w-9 h-9 rounded-xl bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center shadow-md shadow-sky-500/20 cursor-pointer transition">
+          <div
+            onClick={() => {
+              setUploadResult(null);
+              setUploadError(null);
+              setUploadFile(null);
+              setShowUploadModal(true);
+            }}
+            className="w-9 h-9 rounded-xl bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center shadow-md shadow-sky-500/20 cursor-pointer transition"
+            title="Upload Evidence Document"
+          >
             <Plus className="w-5 h-5" />
           </div>
         </div>
@@ -322,8 +404,22 @@ export default function App() {
               </span>
             </div>
 
-            {/* Scenario Selector & Status Indicator */}
+            {/* Scenario Selector, Upload Action & Status Indicator */}
             <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  setUploadResult(null);
+                  setUploadError(null);
+                  setUploadFile(null);
+                  setShowUploadModal(true);
+                }}
+                className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-xs transition"
+                title="Ingest new statutory document"
+              >
+                <UploadCloud className="w-3.5 h-3.5" />
+                <span>Upload Evidence</span>
+              </button>
+
               <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1 rounded-lg text-xs">
                 <span className="text-slate-500 font-medium">Test Scenario:</span>
                 <select
@@ -453,8 +549,21 @@ export default function App() {
 
               {/* Application & Declarations Checklist (Exact Image 2 Section) */}
               <div className="mt-4 flex-1">
-                <div className="text-xs font-bold text-slate-700 mb-2">
-                  Application & Declarations
+                <div className="flex items-center justify-between text-xs font-bold text-slate-700 mb-2">
+                  <span>Application & Declarations</span>
+                  <button
+                    onClick={() => {
+                      setUploadResult(null);
+                      setUploadError(null);
+                      setUploadFile(null);
+                      setShowUploadModal(true);
+                    }}
+                    className="text-[10px] text-sky-600 hover:text-sky-800 font-bold flex items-center gap-0.5 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200 transition hover:bg-sky-100"
+                    title="Upload new document evidence"
+                  >
+                    <Plus className="w-3 h-3" />
+                    <span>Upload</span>
+                  </button>
                 </div>
 
                 <div className="space-y-1.5">
@@ -520,6 +629,35 @@ export default function App() {
                       </div>
                     );
                   })}
+
+                  {/* Dynamically uploaded documents */}
+                  {uploadedDocsList.map((docFile) => (
+                    <div
+                      key={docFile}
+                      onClick={() => {
+                        setActiveDocument(docFile);
+                        setCurrentPage(1);
+                      }}
+                      className={`p-2.5 rounded-xl border text-xs cursor-pointer transition-all ${
+                        activeDocument === docFile
+                          ? 'bg-sky-50/70 border-sky-300 ring-1 ring-sky-300/40 shadow-xs'
+                          : 'bg-white border-slate-200/80 hover:bg-slate-50'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <FileText className={`w-3.5 h-3.5 ${activeDocument === docFile ? 'text-sky-600' : 'text-slate-400'}`} />
+                          <span className="font-semibold text-slate-800 truncate w-32">{docFile}</span>
+                        </div>
+                        <span className="h-4 w-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px]">
+                          ✓
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-emerald-600 mt-1 pl-5.5 truncate font-medium">
+                        User Ingested Evidence
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -860,34 +998,50 @@ export default function App() {
                 )}
               </div>
 
-              {/* Bottom Action Footer: Officer Resolution Buttons (Image 2 Bottom Button) */}
-              {selectedFinding ? (
-                <div className="p-3.5 border-t border-slate-200 bg-white space-y-2">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                    Officer Decision Support
+              {/* Bottom Action Footer: Officer Resolution Buttons & Upload Corrected Document (Exact Image 2) */}
+              <div className="p-3.5 border-t border-slate-200 bg-white space-y-2.5">
+                {selectedFinding ? (
+                  <div className="space-y-1.5">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      Officer Decision Support
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => recordOfficerDecision('ACCEPTED')}
+                        className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition"
+                      >
+                        <Check className="w-3.5 h-3.5" />
+                        Accept Finding
+                      </button>
+                      <button
+                        onClick={() => recordOfficerDecision('REFERRED_FOR_INSPECTION', 'Physical inspection recommended')}
+                        className="w-full py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition"
+                      >
+                        <AlertTriangle className="w-3.5 h-3.5" />
+                        Mark Inspection
+                      </button>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    <button
-                      onClick={() => recordOfficerDecision('ACCEPTED')}
-                      className="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition"
-                    >
-                      <Check className="w-3.5 h-3.5" />
-                      Accept Finding
-                    </button>
-                    <button
-                      onClick={() => recordOfficerDecision('REFERRED_FOR_INSPECTION', 'Physical inspection recommended')}
-                      className="w-full py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm transition"
-                    >
-                      <AlertTriangle className="w-3.5 h-3.5" />
-                      Mark Inspection
-                    </button>
+                ) : (
+                  <div className="text-[11px] text-slate-400 text-center py-0.5">
+                    Select an observation above to inspect and take action.
                   </div>
-                </div>
-              ) : (
-                <div className="p-3 border-t border-slate-200 bg-slate-50 text-center text-xs text-slate-500">
-                  Select an observation above to inspect and record an action.
-                </div>
-              )}
+                )}
+
+                {/* Upload Corrected Document Button from Reference Image 2 */}
+                <button
+                  onClick={() => {
+                    setUploadResult(null);
+                    setUploadError(null);
+                    setUploadFile(null);
+                    setShowUploadModal(true);
+                  }}
+                  className="w-full py-2.5 px-4 bg-white hover:bg-slate-50 border border-slate-300 text-slate-700 font-semibold text-xs rounded-xl flex items-center justify-center gap-2 shadow-2xs transition hover:border-slate-400"
+                >
+                  <span>Upload Corrected Document</span>
+                  <UploadCloud className="w-4 h-4 text-slate-500" />
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -1279,6 +1433,259 @@ export default function App() {
           </div>
         )}
       </div>
+
+      {/* ─────────────────────────────────────────────────────────────────────────
+          DOCUMENT UPLOAD MODAL & STATUTORY INGESTION SECTION
+      ────────────────────────────────────────────────────────────────────────── */}
+      {showUploadModal && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 z-50">
+          <div className="bg-white border border-slate-200 w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+            {/* Modal Header */}
+            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600">
+                  <UploadCloud className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-800">
+                    Statutory Evidence Document Ingestion
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    Hash-verified ingestion with automated SHA-256 integrity checks
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowUploadModal(false)}
+                className="h-8 w-8 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 flex items-center justify-center transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <form onSubmit={handleFileUpload} className="p-6 space-y-4 text-xs">
+              {/* Application Context */}
+              <div className="space-y-1.5">
+                <label className="font-bold text-slate-700">Target Application / Scrutiny Case</label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setUploadScenarioTarget('CURRENT')}
+                    className={`p-2.5 rounded-xl border text-left transition ${
+                      uploadScenarioTarget === 'CURRENT'
+                        ? 'border-sky-500 bg-sky-50/60 ring-1 ring-sky-300'
+                        : 'border-slate-200 hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="font-bold text-slate-800 block truncate">Current Application</span>
+                    <span className="text-[10px] text-slate-500 block truncate">{selectedScenario}</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setUploadScenarioTarget('NEW')}
+                    className={`p-2.5 rounded-xl border text-left transition ${
+                      uploadScenarioTarget === 'NEW'
+                        ? 'border-sky-500 bg-sky-50/60 ring-1 ring-sky-300'
+                        : 'border-slate-200 hover:bg-slate-50'
+                    }`}
+                  >
+                    <span className="font-bold text-slate-800 block">Register New Case</span>
+                    <span className="text-[10px] text-slate-500 block">Custom Institution Input</span>
+                  </button>
+                </div>
+
+                {uploadScenarioTarget === 'NEW' && (
+                  <div className="pt-2 grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="text-[10px] text-slate-500 block font-semibold">Institution Name</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. National Institute of Tech"
+                        value={customInstitutionName}
+                        onChange={(e) => setCustomInstitutionName(e.target.value)}
+                        className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs focus:outline-none focus:border-sky-500"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[10px] text-slate-500 block font-semibold">Case Identifier Code</label>
+                      <input
+                        type="text"
+                        placeholder="e.g. INST-05-NEW"
+                        value={customScenarioId}
+                        onChange={(e) => setCustomScenarioId(e.target.value)}
+                        className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 text-xs uppercase font-mono focus:outline-none focus:border-sky-500"
+                        required
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Document Classification */}
+              <div className="space-y-1.5">
+                <label className="font-bold text-slate-700">Document Classification / Statutory Type</label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    { id: 'Fire_Safety_NOC', label: 'Fire Safety Certificate', icon: Flame, note: 'State Fire Service NOC' },
+                    { id: 'Land_Title_Deed', label: 'Land Title Deed', icon: Building2, note: 'FAR & Ownership verification' },
+                    { id: 'Faculty_Portfolio', label: 'Faculty Portfolio', icon: GraduationCap, note: 'FSR & Cadre ratio audit' },
+                    { id: 'Other_Evidence', label: 'Other Statutory Evidence', icon: FileText, note: 'Supplemental compliance PDF' },
+                  ].map((dt) => {
+                    const Icon = dt.icon;
+                    return (
+                      <div
+                        key={dt.id}
+                        onClick={() => setUploadDocType(dt.id)}
+                        className={`p-2.5 rounded-xl border cursor-pointer transition ${
+                          uploadDocType === dt.id
+                            ? 'border-sky-500 bg-sky-50/50 ring-1 ring-sky-300'
+                            : 'border-slate-200 hover:bg-slate-50'
+                        }`}
+                      >
+                        <div className="flex items-center gap-1.5 font-bold text-slate-800">
+                          <Icon className={`w-3.5 h-3.5 ${uploadDocType === dt.id ? 'text-sky-600' : 'text-slate-400'}`} />
+                          <span className="truncate">{dt.label}</span>
+                        </div>
+                        <span className="text-[10px] text-slate-500 block mt-0.5 truncate">{dt.note}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Drag & Drop File Upload Area */}
+              <div className="space-y-1.5">
+                <label className="font-bold text-slate-700">Select File</label>
+                <div
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setDragActive(true);
+                  }}
+                  onDragLeave={() => setDragActive(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setDragActive(false);
+                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                      setUploadFile(e.dataTransfer.files[0]);
+                    }
+                  }}
+                  className={`border-2 border-dashed rounded-xl p-5 text-center transition cursor-pointer ${
+                    dragActive
+                      ? 'border-sky-500 bg-sky-50/50'
+                      : uploadFile
+                      ? 'border-emerald-400 bg-emerald-50/30'
+                      : 'border-slate-200 hover:border-slate-300 bg-slate-50/50'
+                  }`}
+                  onClick={() => document.getElementById('hidden-file-input')?.click()}
+                >
+                  <input
+                    id="hidden-file-input"
+                    type="file"
+                    accept=".pdf,.png,.jpg,.jpeg"
+                    className="hidden"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        setUploadFile(e.target.files[0]);
+                      }
+                    }}
+                  />
+
+                  {uploadFile ? (
+                    <div className="flex items-center justify-between bg-white p-3 rounded-lg border border-slate-200 shadow-2xs">
+                      <div className="flex items-center gap-2.5 text-left">
+                        <div className="h-8 w-8 rounded-lg bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600">
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div className="font-bold text-slate-800 text-xs truncate max-w-xs">{uploadFile.name}</div>
+                          <div className="text-[10px] text-slate-400">
+                            {(uploadFile.size / 1024).toFixed(1)} KB · {uploadFile.type || 'Document'}
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setUploadFile(null);
+                        }}
+                        className="text-xs text-red-500 hover:text-red-700 font-semibold px-2 py-1 rounded hover:bg-red-50"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-1.5 py-2">
+                      <div className="h-9 w-9 rounded-full bg-sky-50 flex items-center justify-center text-sky-500">
+                        <FileUp className="w-4 h-4" />
+                      </div>
+                      <div className="font-semibold text-slate-700 text-xs">
+                        Click to browse or drag and drop your document
+                      </div>
+                      <div className="text-[10px] text-slate-400">
+                        Supports PDF, JPEG, PNG up to 25MB (Auto SHA-256 hashed)
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Status & Error Feedback */}
+              {uploadError && (
+                <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-red-500 shrink-0" />
+                  <span>{uploadError}</span>
+                </div>
+              )}
+
+              {uploadResult && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-800 text-xs space-y-1">
+                  <div className="flex items-center gap-1.5 font-bold text-emerald-700">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>{uploadResult.message}</span>
+                  </div>
+                  <div className="font-mono text-[10px] text-emerald-600">
+                    SHA-256: {uploadResult.sha256_hash.slice(0, 24)}...
+                  </div>
+                </div>
+              )}
+
+              {/* Form Action Buttons */}
+              <div className="pt-2 flex items-center justify-end gap-2 border-t border-slate-100">
+                <button
+                  type="button"
+                  onClick={() => setShowUploadModal(false)}
+                  className="px-4 py-2 border border-slate-200 rounded-xl text-slate-600 font-semibold hover:bg-slate-50 transition"
+                >
+                  Cancel
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={uploading || !uploadFile}
+                  className="px-5 py-2 bg-sky-600 hover:bg-sky-700 disabled:opacity-50 text-white rounded-xl font-bold flex items-center gap-1.5 shadow-sm transition"
+                >
+                  {uploading ? (
+                    <>
+                      <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                      <span>Ingesting & Hashing...</span>
+                    </>
+                  ) : (
+                    <>
+                      <UploadCloud className="w-4 h-4" />
+                      <span>Upload & Run Scrutiny</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

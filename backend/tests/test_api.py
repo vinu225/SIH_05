@@ -67,3 +67,20 @@ def test_db_stats():
     assert tables["documents"] >= 12
     assert tables["aph_rules"] >= 5
 
+
+def test_document_upload():
+    # Test uploading a synthetic PDF
+    dummy_pdf = b"%PDF-1.4 1 0 obj << /Type /Catalog >> endobj xref 0 1 0000000000 65535 f trailer << /Root 1 0 R >> startxref 99 %%EOF"
+    files = {"file": ("test_doc.pdf", dummy_pdf, "application/pdf")}
+    data = {
+        "scenario_id": "INST-01-COMPLIANT",
+        "document_type": "Other_Declaration",
+        "institution_name": "Test Engineering College",
+    }
+    res = client.post("/api/v1/documents/upload", files=files, data=data)
+    assert res.status_code == 200
+    resp_data = res.json()
+    assert resp_data["status"] == "success"
+    assert "sha256_hash" in resp_data
+    assert resp_data["filename"] == "test_doc.pdf"
+

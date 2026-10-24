@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 from datetime import datetime, date
 
-from fastapi import FastAPI, HTTPException, Response
+from fastapi import FastAPI, HTTPException, Response, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
@@ -76,11 +76,32 @@ def get_rules():
 @app.get("/api/v1/scenarios")
 def list_scenarios():
     gt_file = BASE_DATA_DIR / "ground_truth.json"
-    if not gt_file.exists():
-        return {"scenarios": []}
-    with open(gt_file, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    return {"scenarios": data.get("benchmarks", [])}
+    benchmarks = []
+    if gt_file.exists():
+        with open(gt_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            benchmarks = data.get("benchmarks", [])
+
+    existing_ids = {b["application_id"] for b in benchmarks}
+    for sub in BASE_DATA_DIR.iterdir():
+        if sub.is_dir():
+            meta_file = sub / "application_metadata.json"
+            if meta_file.exists():
+                try:
+                    with open(meta_file, "r", encoding="utf-8") as mf:
+                        m = json.load(mf)
+                    app_id = m.get("application_id", f"APP-2024-{sub.name}")
+                    if app_id not in existing_ids:
+                        benchmarks.append({
+                            "application_id": app_id,
+                            "institution_name": m.get("institution_name", sub.name),
+                            "scenario_category": "User Uploaded Scrutiny Case",
+                            "expected_outcome": "PENDING_SCRUTINY"
+                        })
+                        existing_ids.add(app_id)
+                except Exception:
+                    pass
+    return {"scenarios": benchmarks}
 
 
 @app.post("/api/v1/evaluate/{scenario_id}")
@@ -294,7 +315,109 @@ def get_document_meta(scenario_id: str, doc_name: str):
         "integrity_status": "Verified Match (SHA-256)",
         "duplicate_detection": "No Collision Across Database",
     }
+@app.post("/api/v1/documents/upload")
+async def upload_document(
+    file: UploadFile = File(...),
+    scenario_id: str = Form(...),
+    document_type: str = Form(...),
+    institution_name: Optional[str] = Form(None),
+):
+    valid_exts = [".pdf", ".png", ".jpg", ".jpeg"]
+    orig_name = file.filename or "uploaded_doc.pdf"
+    file_ext = Path(orig_name).suffix.lower()
+    if file_ext not in valid_exts:
+        raise HTTPException(
+            status_code=400,
+            detail="Unsupported format. Only PDF, PNG, and JPEG documents are accepted for statutory scrutiny.",
+        )
 
+    # Standardize or retain filename
+    if document_type == "Fire_Safety_NOC":
+        target_filename = "Fire_Safety_NOC.pdf"
+    elif document_type == "Land_Title_Deed":
+        target_filename = "Land_Title_Deed.pdf"
+    elif document_type == "Faculty_Portfolio":
+        target_filename = "Faculty_Portfolio.pdf"
+    else:
+        target_filename = orig_name.replace(" ", "_")
+
+    scenario_dir = BASE_DATA_DIR / scenario_id
+    scenario_dir.mkdir(parents=True, exist_ok=True)
+
+    # Ensure application_metadata.json exists
+    meta_path = scenario_dir / "application_metadata.json"
+    if not meta_path.exists():
+        app_meta = {
+            "application_id": f"APP-2024-{scenario_id}",
+            "institution_name": institution_name or f"Institution ({scenario_id})",
+            "institution_category": "UG Engineering & Technology",
+            "declared_land_acres": 4.0,
+            "total_approved_students": 240,
+            "created_at": datetime.now().isoformat(),
+        }
+        with open(meta_path, "w", encoding="utf-8") as f:
+            json.dump(app_meta, f, indent=2)
+
+    target_path = scenario_dir / target_filename
+    file_bytes = await file.read()
+    with open(target_path, "wb") as f:
+        f.write(file_bytes)
+
+    # Hash verification vault calculation
+    sha256 = hash_vault.compute_sha256(file_bytes)
+    dhash = (
+        hash_vault.compute_dhash(file_bytes[:2048])
+        if target_filename.endswith((".png", ".jpg", ".jpeg"))
+        else "N/A (Vector PDF)"
+    )
+
+    # Determine total pages
+    total_pages = 1
+    if target_filename.endswith(".pdf"):
+        try:
+            doc = fitz.open(str(target_path))
+            total_pages = len(doc)
+            doc.close()
+        except Exception:
+            total_pages = 1
+
+    # Insert / update in SQLite database
+    doc_id = f"DOC-{scenario_id}-{Path(target_filename).stem.upper()}"
+    db_manager.insert_document(
+        document_id=doc_id,
+        institution_id=scenario_id,
+        document_type=document_type,
+        filename=target_filename,
+        file_path=str(target_path),
+        sha256_hash=sha256,
+        dhash=dhash,
+    )
+
+    # Append to cryptographically chained audit log
+    event = audit_logger.log_event(
+        actor_id="AICTE-OFFICER-409",
+        role="SCRUTINY_OFFICER",
+        action="DOCUMENT_UPLOADED",
+        application_id=scenario_id,
+        details={
+            "document_name": target_filename,
+            "document_type": document_type,
+            "sha256_hash": sha256,
+            "file_size_bytes": len(file_bytes),
+            "total_pages": total_pages,
+        },
+    )
+
+    return {
+        "status": "success",
+        "message": f"Document '{target_filename}' successfully ingested into Hash-Verified Vault.",
+        "filename": target_filename,
+        "scenario_id": scenario_id,
+        "sha256_hash": sha256,
+        "total_pages": total_pages,
+        "size_bytes": len(file_bytes),
+        "audit_event_id": event.event_id,
+    }
 
 
 @app.post("/api/v1/officer/decision")
