@@ -1,0 +1,134 @@
+{
+  "rules_metadata": {
+    "handbook_edition": "AICTE Approval Process Handbook 2024-2027",
+    "version": "1.0.0",
+    "status": "ACTIVE",
+    "verified_against_official_handbook": true,
+    "last_reviewed": "2026-10-24"
+  },
+  "rules": [
+    {
+      "rule_id": "APH-2024-FSR-ENGG-UG",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "aph_edition": "AICTE Approval Process Handbook 2024-2027",
+      "clause_reference": "Annexure 5, Table 5.1 (Norms for Faculty Requirements)",
+      "handbook_page_no": 112,
+      "title": "Faculty-to-Student Ratio (FSR) for UG Engineering & Technology",
+      "description": "Mandatory Faculty to Student ratio of 1:20 for Undergraduate Degree in Engineering and Technology based on total approved intake.",
+      "applicability": {
+        "program_category": "ENGINEERING_AND_TECHNOLOGY",
+        "level": "UG"
+      },
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "parameters": {
+        "required_ratio": 20.0,
+        "cadre_ratio": "1:2:6",
+        "min_professors_per_division": 1
+      }
+    },
+    {
+      "rule_id": "APH-2024-FSR-MGMT-UG",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "aph_edition": "AICTE Approval Process Handbook 2024-2027",
+      "clause_reference": "Annexure 5, Table 5.1 (Norms for Faculty Requirements)",
+      "handbook_page_no": 113,
+      "title": "Faculty-to-Student Ratio (FSR) for UG Management",
+      "description": "Mandatory Faculty to Student ratio of 1:25 for Undergraduate Degree in Management (BBA/BMS) based on total approved intake.",
+      "applicability": {
+        "program_category": "MANAGEMENT",
+        "level": "UG"
+      },
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "parameters": {
+        "required_ratio": 25.0,
+        "cadre_ratio": "1:2:6"
+      }
+    },
+    {
+      "rule_id": "APH-2024-CADRE-RATIO",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "aph_edition": "AICTE Approval Process Handbook 2024-2027",
+      "clause_reference": "Annexure 5, Section 5.2 (Cadre Distribution)",
+      "handbook_page_no": 114,
+      "title": "Cadre Ratio Compliance (1:2:6)",
+      "description": "The faculty cadre distribution must strictly adhere to the ratio of 1 Professor : 2 Associate Professors : 6 Assistant Professors.",
+      "applicability": {
+        "program_category": "ALL",
+        "level": "ALL"
+      },
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "parameters": {
+        "professor_proportion": 1,
+        "associate_professor_proportion": 2,
+        "assistant_professor_proportion": 6
+      }
+    },
+    {
+      "rule_id": "APH-2024-LAND-DEED-SYNC",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "aph_edition": "AICTE Approval Process Handbook 2024-2027",
+      "clause_reference": "Chapter 1, Section 4 (Land & Building Plan Norms)",
+      "handbook_page_no": 38,
+      "title": "Land Title Deed vs Application Consistency",
+      "description": "The land area declared in the portal application must match the registered Title Deed schedule and conform to local authority approved FSI/FAR building plans.",
+      "applicability": {
+        "program_category": "ALL",
+        "level": "ALL"
+      },
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "parameters": {
+        "max_allowable_undeclared_discrepancy_acres": 0.0,
+        "governed_by_fsi_far": true
+      }
+    },
+    {
+      "rule_id": "APH-2024-FIRE-NOC-VALIDITY",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "aph_edition": "AICTE Approval Process Handbook 2024-2027",
+      "clause_reference": "Chapter 1, Section 3.4.1 (Mandatory Clearances)",
+      "handbook_page_no": 32,
+      "title": "Fire Safety Certificate Mandatory Validity",
+      "description": "Every technical institution must possess an unexpired Fire Safety Certificate/NOC issued by the competent State Fire & Emergency Services Department.",
+      "applicability": {
+        "program_category": "ALL",
+        "level": "ALL"
+      },
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "parameters": {
+        "mandatory": true,
+        "must_be_active_on_academic_year_start": true
+      }
+    },
+    {
+      "rule_id": "APH-2024-STRUCTURAL-STABILITY-CONDITIONAL",
+      "version": "1.0.0",
+      "status": "ACTIVE",
+      "aph_edition": "AICTE Approval Process Handbook 2024-2027",
+      "clause_reference": "Chapter 1, Section 3.4.2 (Structural Stability)",
+      "handbook_page_no": 33,
+      "title": "Structural Stability Certificate (Conditional)",
+      "description": "Structural Stability Certificate issued by a certified structural engineer is required for existing buildings older than thirty (30) years or following significant structural alterations.",
+      "applicability": {
+        "program_category": "ALL",
+        "level": "ALL"
+      },
+      "effective_from": "2024-04-01",
+      "effective_until": null,
+      "parameters": {
+        "mandatory": false,
+        "age_threshold_years": 30,
+        "required_if_structural_alteration": true
+      }
+    }
+  ]
+}
