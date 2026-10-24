@@ -55,3 +55,15 @@ def test_audit_trail_endpoint():
     data = res.json()
     assert data["chain_integrity_valid"] is True
     assert data["total_events"] > 0
+
+
+def test_db_stats():
+    res = client.get("/api/v1/db/stats")
+    assert res.status_code == 200
+    data = res.json()
+    assert data["database_type"] == "SQLite 3 Relational Database"
+    tables = data["tables"]
+    assert tables["institutions"] >= 4
+    assert tables["documents"] >= 12
+    assert tables["aph_rules"] >= 5
+

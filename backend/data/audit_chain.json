@@ -88,5 +88,262 @@
     },
     "previous_hash": "c65bc030eebebd789ab7921398bcd0b755c56080ff5935a777eea33e87dc1215",
     "event_hash": "aa2939c933f4de49eed1689b55f47c11ab3e09372bafc1aa0c3d94d6cb51db14"
+  },
+  {
+    "event_id": "EVT-00007",
+    "sequence_number": 7,
+    "timestamp": "2026-10-24T22:02:25.754297",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "aa2939c933f4de49eed1689b55f47c11ab3e09372bafc1aa0c3d94d6cb51db14",
+    "event_hash": "a2c3d2b9317245f6cb753915c570accc73ab646fa7c952f62ffeba27811a7113"
+  },
+  {
+    "event_id": "EVT-00008",
+    "sequence_number": 8,
+    "timestamp": "2026-10-24T22:02:25.760358",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "a2c3d2b9317245f6cb753915c570accc73ab646fa7c952f62ffeba27811a7113",
+    "event_hash": "bdfc4e44bd2b922096aaec3191fab24eec8b39bb932183e79446efeeea51ff18"
+  },
+  {
+    "event_id": "EVT-00009",
+    "sequence_number": 9,
+    "timestamp": "2026-10-24T22:04:27.402006",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-02-DATE-ALTERED",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-02-DATE-ALTERED"
+    },
+    "previous_hash": "bdfc4e44bd2b922096aaec3191fab24eec8b39bb932183e79446efeeea51ff18",
+    "event_hash": "477ab3d0fbabb5dec9f2028209c4560c898ede0b96023707406a1d38d623e427"
+  },
+  {
+    "event_id": "EVT-00010",
+    "sequence_number": 10,
+    "timestamp": "2026-10-24T22:04:29.575449",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-03-LAND-CADRE-DISCREPANCY",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-03-LAND-CADRE-DISCREPANCY"
+    },
+    "previous_hash": "477ab3d0fbabb5dec9f2028209c4560c898ede0b96023707406a1d38d623e427",
+    "event_hash": "551ae114a85faf43a0a66474f1df205953b3c8e6fb359766031455126464be79"
+  },
+  {
+    "event_id": "EVT-00011",
+    "sequence_number": 11,
+    "timestamp": "2026-10-24T22:13:10.044290",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-02-DATE-ALTERED",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-02-DATE-ALTERED"
+    },
+    "previous_hash": "551ae114a85faf43a0a66474f1df205953b3c8e6fb359766031455126464be79",
+    "event_hash": "4c6364757949f449bca9e10a88164db2cba119b2706106d52211e032e826ccee"
+  },
+  {
+    "event_id": "EVT-00012",
+    "sequence_number": 12,
+    "timestamp": "2026-10-24T22:13:12.632679",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "4c6364757949f449bca9e10a88164db2cba119b2706106d52211e032e826ccee",
+    "event_hash": "0b7fdf590fcf8f11243e12427193e03185dc52cd5c4e12c616cc95fcd4292faf"
+  },
+  {
+    "event_id": "EVT-00013",
+    "sequence_number": 13,
+    "timestamp": "2026-10-24T22:14:21.439178",
+    "actor_id": "OFFICER-REG-9812",
+    "role": "SCRUTINY_OFFICER",
+    "action": "OFFICER_RESOLUTION",
+    "target_application_id": "FIND-FIRE-APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "finding_id": "FIND-FIRE-APP-2024-INST-01-COMPLIANT",
+      "decision": "REFERRED_FOR_INSPECTION",
+      "reason": "Officer reviewed via Split-Screen Scrutiny Cockpit"
+    },
+    "previous_hash": "0b7fdf590fcf8f11243e12427193e03185dc52cd5c4e12c616cc95fcd4292faf",
+    "event_hash": "269b2a13560b7c89085f1c4a605d393d2197de3f2183cc8065d1623c59a8276c"
+  },
+  {
+    "event_id": "EVT-00014",
+    "sequence_number": 14,
+    "timestamp": "2026-10-24T22:14:25.122125",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "269b2a13560b7c89085f1c4a605d393d2197de3f2183cc8065d1623c59a8276c",
+    "event_hash": "5d96e506f5966b8f955497dcd070b0ab0ed1ff36d19134f83c4b0c529844a00f"
+  },
+  {
+    "event_id": "EVT-00015",
+    "sequence_number": 15,
+    "timestamp": "2026-10-24T22:15:20.309233",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "5d96e506f5966b8f955497dcd070b0ab0ed1ff36d19134f83c4b0c529844a00f",
+    "event_hash": "18b26439ffdaafcea95ee1ed1841cefd2f725298046be0c61d9c7acb88c43b44"
+  },
+  {
+    "event_id": "EVT-00016",
+    "sequence_number": 16,
+    "timestamp": "2026-10-24T22:15:20.313565",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "18b26439ffdaafcea95ee1ed1841cefd2f725298046be0c61d9c7acb88c43b44",
+    "event_hash": "06620e7d1ce01ec3895c9eec918d5b05158f0adc0cd9775ade1d99d379cb3c37"
+  },
+  {
+    "event_id": "EVT-00017",
+    "sequence_number": 17,
+    "timestamp": "2026-10-24T22:16:12.886163",
+    "actor_id": "OFFICER-REG-9812",
+    "role": "SCRUTINY_OFFICER",
+    "action": "OFFICER_RESOLUTION",
+    "target_application_id": "FIND-CADRE-APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "finding_id": "FIND-CADRE-APP-2024-INST-01-COMPLIANT",
+      "decision": "REFERRED_FOR_INSPECTION",
+      "reason": "Officer reviewed via Split-Screen Scrutiny Cockpit"
+    },
+    "previous_hash": "06620e7d1ce01ec3895c9eec918d5b05158f0adc0cd9775ade1d99d379cb3c37",
+    "event_hash": "370b2fd294368baa0e8e2b1cdb35221febc958795046216106bd8d92a49a41af"
+  },
+  {
+    "event_id": "EVT-00018",
+    "sequence_number": 18,
+    "timestamp": "2026-10-24T22:16:16.531300",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "370b2fd294368baa0e8e2b1cdb35221febc958795046216106bd8d92a49a41af",
+    "event_hash": "439d623242d0db8f24a608d24cde1135fbadca8706f8e01df8b43d00575999a4"
+  },
+  {
+    "event_id": "EVT-00019",
+    "sequence_number": 19,
+    "timestamp": "2026-10-24T22:16:23.508001",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-02-DATE-ALTERED",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-02-DATE-ALTERED"
+    },
+    "previous_hash": "439d623242d0db8f24a608d24cde1135fbadca8706f8e01df8b43d00575999a4",
+    "event_hash": "36912d9ad0c3a537721978f1102354dcb1754e674ac8468c679a9805a1ce5cfb"
+  },
+  {
+    "event_id": "EVT-00020",
+    "sequence_number": 20,
+    "timestamp": "2026-10-24T22:16:31.008689",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-03-LAND-CADRE-DISCREPANCY",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-03-LAND-CADRE-DISCREPANCY"
+    },
+    "previous_hash": "36912d9ad0c3a537721978f1102354dcb1754e674ac8468c679a9805a1ce5cfb",
+    "event_hash": "6f5cde823255d229ed66766bb08225f5e508db6c0e4ab351d9181314ddb306a0"
+  },
+  {
+    "event_id": "EVT-00021",
+    "sequence_number": 21,
+    "timestamp": "2026-10-24T23:20:50.681310",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-01-COMPLIANT"
+    },
+    "previous_hash": "6f5cde823255d229ed66766bb08225f5e508db6c0e4ab351d9181314ddb306a0",
+    "event_hash": "dd7c46452c254d4fe424a1101a5b4b8203fa8e3bcd7e06920300d943de2ca4f4"
+  },
+  {
+    "event_id": "EVT-00022",
+    "sequence_number": 22,
+    "timestamp": "2026-10-24T23:20:50.707606",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-03-LAND-CADRE-DISCREPANCY",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-03-LAND-CADRE-DISCREPANCY"
+    },
+    "previous_hash": "dd7c46452c254d4fe424a1101a5b4b8203fa8e3bcd7e06920300d943de2ca4f4",
+    "event_hash": "fa5ded339d43de191e52c157cccc4f427ef3ad3b6350ccf6f27b1cc16be9bdfc"
+  },
+  {
+    "event_id": "EVT-00023",
+    "sequence_number": 23,
+    "timestamp": "2026-10-24T23:20:50.755084",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-04-UNTRUSTED-QR-GPS",
+    "details": {
+      "findings_count": 5,
+      "scenario_id": "INST-04-UNTRUSTED-QR-GPS"
+    },
+    "previous_hash": "fa5ded339d43de191e52c157cccc4f427ef3ad3b6350ccf6f27b1cc16be9bdfc",
+    "event_hash": "3ba63c2a816c9a1bcdcab75d098b5e9e07f4f0d448a1c9e252a2e15ae7f4275a"
   }
 ]

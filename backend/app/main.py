@@ -30,6 +30,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from app.db.database import LocalDatabaseManager
+
+BASE_DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "synthetic_scenarios"
+RULES_FILE = Path(__file__).resolve().parent / "rules" / "aph_rules.json"
+
 # Initialize engines
 evaluator = APHRuleEvaluator()
 audit_logger = HashChainedAuditLogger()
@@ -37,8 +42,10 @@ hash_vault = HashVerifiedVault()
 qr_validator = QRDestinationValidator()
 digilocker_adapter = DigiLockerMockAdapter()
 fire_adapter = StateFireMockAdapter()
+db_manager = LocalDatabaseManager()
 
-BASE_DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "synthetic_scenarios"
+# Seed SQLite database on startup
+db_manager.seed_initial_data(BASE_DATA_DIR, RULES_FILE)
 
 
 class OfficerDecisionRequest(BaseModel):
@@ -197,6 +204,10 @@ async def evaluate_scenario(scenario_id: str):
             confidence_or_uncertainty={"confidence_score": 1.0, "uncertainty_notes": "Simulated mock response."},
         ))
 
+    # Persist findings to local SQLite DB
+    for f in findings:
+        db_manager.record_finding(scenario_id, f.model_dump())
+
     # Audit Logging
     audit_logger.log_event(
         actor_id="SYSTEM_AUTO_SCRUTINY",
@@ -225,6 +236,15 @@ def get_document(scenario_id: str, doc_name: str):
 
 @app.post("/api/v1/officer/decision")
 def record_decision(req: OfficerDecisionRequest):
+    # Update local SQLite DB
+    db_manager.update_officer_decision(
+        finding_id=req.finding_id,
+        decision=req.decision.value if hasattr(req.decision, 'value') else str(req.decision),
+        officer_id=req.officer_id,
+        reason=req.reason,
+    )
+
+    # Log in SHA-256 hash-chained audit trail
     event = audit_logger.log_event(
         actor_id=req.officer_id,
         role="SCRUTINY_OFFICER",
@@ -239,6 +259,16 @@ def record_decision(req: OfficerDecisionRequest):
     return {"status": "recorded", "event_id": event.event_id, "timestamp": event.timestamp}
 
 
+@app.get("/api/v1/db/stats")
+def get_db_stats():
+    """Returns real-time relational table row counts from the local SQLite database."""
+    return {
+        "database_type": "SQLite 3 Relational Database",
+        "file_path": str(db_manager.db_path),
+        "tables": db_manager.get_stats(),
+    }
+
+
 @app.get("/api/v1/audit/trail")
 def get_audit_trail():
     is_valid, err = audit_logger.verify_chain_integrity()
@@ -248,3 +278,4 @@ def get_audit_trail():
         "total_events": len(audit_logger.events),
         "events": [e.model_dump() for e in audit_logger.events],
     }
+
