@@ -45,3 +45,6 @@ htmlcov/
 *.swo
 .DS_Store
 Thumbs.db
+
+# Documentation & Implementation Structure
+structure/
