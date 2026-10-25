@@ -126,19 +126,30 @@ export default function App() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState<boolean>(false);
   const [uploadedDocsList, setUploadedDocsList] = useState<string[]>([]);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Load scenarios & rules on mount
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const queryScenario = params.get('scenario');
+
     fetch('/api/v1/scenarios')
       .then((res) => res.json())
       .then((data) => {
         if (data.scenarios && data.scenarios.length > 0) {
           setScenarios(data.scenarios);
-          const initialId = data.scenarios[0].application_id.replace('APP-2024-', '');
-          loadScenario(initialId);
+          if (queryScenario) {
+            loadScenario(queryScenario);
+          } else {
+            const initialId = data.scenarios[0].application_id.replace('APP-2024-', '');
+            loadScenario(initialId);
+          }
         }
       })
-      .catch((err) => console.error('Failed to load scenarios:', err));
+      .catch((err) => {
+        console.error('Failed to load scenarios:', err);
+        setLoadError('Failed to load institution scenarios from backend.');
+      });
 
     fetch('/api/v1/rules')
       .then((res) => res.json())
@@ -160,19 +171,35 @@ export default function App() {
 
   const loadScenario = (scenarioId: string) => {
     setLoading(true);
+    setLoadError(null);
     setSelectedScenario(scenarioId);
     setSelectedFinding(null);
     setShowHeatmap(false);
     setCurrentPage(1);
 
+    try {
+      const url = new URL(window.location.href);
+      if (url.searchParams.get('scenario') !== scenarioId) {
+        url.searchParams.set('scenario', scenarioId);
+        window.history.replaceState({}, '', url.toString());
+      }
+    } catch {}
+
     fetch(`/api/v1/evaluate/${scenarioId}`, { method: 'POST' })
-      .then((res) => res.json())
+      .then(async (res) => {
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.detail || `Institution scenario '${scenarioId}' not found (HTTP ${res.status})`);
+        }
+        return res.json();
+      })
       .then((data) => {
         setEvaluationData(data);
         setLoading(false);
       })
       .catch((err) => {
         console.error(err);
+        setLoadError(err.message || 'Error evaluating scenario');
         setLoading(false);
       });
   };
@@ -503,9 +530,34 @@ export default function App() {
         </header>
 
         {/* ─────────────────────────────────────────────────────────────────────────
+            ERROR STATE (Scenario Not Found / Network Failure)
+        ────────────────────────────────────────────────────────────────────────── */}
+        {loadError && (
+          <div className="flex-1 flex items-center justify-center p-8">
+            <div className="bg-white border border-rose-200 rounded-3xl p-8 max-w-lg w-full text-center shadow-lg shadow-rose-500/5">
+              <div className="w-14 h-14 rounded-2xl bg-rose-50 border border-rose-100 flex items-center justify-center text-rose-500 mx-auto mb-4">
+                <AlertTriangle className="w-7 h-7" />
+              </div>
+              <h2 className="text-lg font-bold text-slate-800">Institution Package Not Found</h2>
+              <p className="text-xs text-slate-500 mt-2 mb-6 leading-relaxed">
+                {loadError}
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={() => loadScenario('INST-01-COMPLIANT')}
+                  className="px-4 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-sm transition"
+                >
+                  Load Baseline Institution
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ─────────────────────────────────────────────────────────────────────────
             VIEW 1: DOCUMENT REVIEW SPLIT SCREEN (Inspired by Reference Image 2)
         ────────────────────────────────────────────────────────────────────────── */}
-        {currentView === 'DOCUMENT_REVIEW' && (
+        {!loadError && currentView === 'DOCUMENT_REVIEW' && (
           <div className="flex-1 flex overflow-hidden">
             {/* ═══════════════════════════════════════════════════════════════════════
                 LEFT SUB-PANEL: AI SUBMISSION READINESS & DECLARATIONS CHECKLIST

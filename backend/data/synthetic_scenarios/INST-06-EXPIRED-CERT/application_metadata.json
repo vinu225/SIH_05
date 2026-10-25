@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-06-EXPIRED-CERT",
+  "institution_name": "Himalayan Institute of Technical Sciences",
+  "declared_land_acres": 4.2,
+  "total_approved_students": 240,
+  "expected_status": "EXPIRED_CERTIFICATE",
+  "scenario_category": "Expired synthetic certificate",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

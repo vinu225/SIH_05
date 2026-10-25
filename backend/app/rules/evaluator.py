@@ -54,10 +54,10 @@ class APHRuleEvaluator:
         application_id: str,
         program_category: str,
         level: str,
-        total_students: int,
-        total_faculty: int,
+        total_students: Optional[int],
+        total_faculty: Optional[int],
         faculty_doc_id: str = "DOC-FACULTY-001",
-        faculty_doc_name: str = "Faculty_Portfolio_2024.pdf",
+        faculty_doc_name: str = "Faculty_Portfolio.pdf",
         page_num: int = 1,
         bbox: Optional[NormalizedBoundingBox] = None,
     ) -> FindingRecord:
@@ -71,6 +71,29 @@ class APHRuleEvaluator:
         required_ratio = 20.0 if program_category == "ENGINEERING_AND_TECHNOLOGY" else 25.0
         if rule and "required_ratio" in rule.parameters:
             required_ratio = float(rule.parameters["required_ratio"])
+
+        if total_students is None or total_faculty is None or total_students <= 0:
+            return FindingRecord(
+                finding_id=f"FIND-FSR-{application_id}",
+                assessment_pillar=AssessmentPillar.REGULATORY_COMPLIANCE,
+                outcome=FindingOutcome.REQUIRED_EVIDENCE_MISSING,
+                title=f"Faculty-Student Ratio Unestablished ({program_category} {level})",
+                description="Teaching faculty count or approved student intake could not be established from submitted evidence. Human review required.",
+                applicable_rule=self.get_rule_ref(rule_id),
+                evidence=FindingEvidence(
+                    source_document_id=faculty_doc_id,
+                    source_document_name=faculty_doc_name,
+                    page_number=page_num,
+                    normalized_bbox=bbox,
+                    extracted_value="Unestablished (Missing Evidence)",
+                    compared_against={"mandatory_ratio": f"1:{int(required_ratio)}"},
+                    discrepancy_magnitude="Missing faculty or intake count",
+                ),
+                confidence_or_uncertainty=ConfidenceOrUncertainty(
+                    confidence_score=0.0,
+                    uncertainty_notes="Incomplete evidence: Faculty count missing from portfolio.",
+                ),
+            )
 
         required_faculty = int(round(total_students / required_ratio))
         actual_ratio = round(total_students / total_faculty, 1) if total_faculty > 0 else 0.0
@@ -114,26 +137,50 @@ class APHRuleEvaluator:
             ),
             confidence_or_uncertainty=ConfidenceOrUncertainty(
                 confidence_score=0.98,
-                uncertainty_notes="Calculated from verified Form 16 / appointment orders.",
+                uncertainty_notes=f"Calculated from verified faculty appointment records using formula ceil(intake/{int(required_ratio)}).",
             ),
         )
 
     def evaluate_cadre_ratio(
         self,
         application_id: str,
-        professors: int,
-        assoc_professors: int,
-        asst_professors: int,
+        professors: Optional[int],
+        assoc_professors: Optional[int],
+        asst_professors: Optional[int],
         faculty_doc_id: str = "DOC-FACULTY-001",
-        faculty_doc_name: str = "Faculty_Portfolio_2024.pdf",
+        faculty_doc_name: str = "Faculty_Portfolio.pdf",
         page_num: int = 1,
         bbox: Optional[NormalizedBoundingBox] = None,
     ) -> FindingRecord:
         """Evaluates Cadre Ratio against authentic APH 2024-27 Annexure 5 (1:2:6 ratio)."""
         rule_id = "APH-2024-CADRE-RATIO"
+
+        if professors is None or assoc_professors is None or asst_professors is None:
+            return FindingRecord(
+                finding_id=f"FIND-CADRE-{application_id}",
+                assessment_pillar=AssessmentPillar.REGULATORY_COMPLIANCE,
+                outcome=FindingOutcome.REQUIRED_EVIDENCE_MISSING,
+                title="Cadre Breakdown Unestablished",
+                description="Faculty cadre tier counts could not be established from submitted evidence. Human review required.",
+                applicable_rule=self.get_rule_ref(rule_id),
+                evidence=FindingEvidence(
+                    source_document_id=faculty_doc_id,
+                    source_document_name=faculty_doc_name,
+                    page_number=page_num,
+                    normalized_bbox=bbox,
+                    extracted_value="Unestablished (Missing Evidence)",
+                    compared_against={"mandated_cadre_ratio": "1 : 2 : 6"},
+                    discrepancy_magnitude="Missing cadre counts",
+                ),
+                confidence_or_uncertainty=ConfidenceOrUncertainty(
+                    confidence_score=0.0,
+                    uncertainty_notes="Incomplete evidence: Cadre breakdown missing from portfolio.",
+                ),
+            )
+
         total_faculty = professors + assoc_professors + asst_professors
 
-        # If zero professors exist in a department with faculty >= 9, cadre is deficient
+        # If zero professors exist in a department with faculty >= 6, cadre is deficient
         if professors == 0 and total_faculty >= 6:
             outcome = FindingOutcome.DISCREPANCY_FOUND
             title = "Cadre Ratio Deficit (0 Professors)"
@@ -175,15 +222,39 @@ class APHRuleEvaluator:
     def evaluate_land_consistency(
         self,
         application_id: str,
-        declared_acres: float,
-        deed_acres: float,
+        declared_acres: Optional[float],
+        deed_acres: Optional[float],
         land_doc_id: str = "DOC-LAND-001",
         land_doc_name: str = "Land_Title_Deed.pdf",
-        page_num: int = 3,
+        page_num: int = 1,
         bbox: Optional[NormalizedBoundingBox] = None,
     ) -> FindingRecord:
         """Evaluates declared land area vs registered title deed area."""
         rule_id = "APH-2024-LAND-DEED-SYNC"
+
+        if deed_acres is None or declared_acres is None:
+            return FindingRecord(
+                finding_id=f"FIND-LAND-{application_id}",
+                assessment_pillar=AssessmentPillar.REGULATORY_COMPLIANCE,
+                outcome=FindingOutcome.REQUIRED_EVIDENCE_MISSING,
+                title="Land Measure Unestablished",
+                description="Total registered acreage could not be extracted from the submitted Land Title Deed. Requires human officer review of physical deed schedule.",
+                applicable_rule=self.get_rule_ref(rule_id),
+                evidence=FindingEvidence(
+                    source_document_id=land_doc_id,
+                    source_document_name=land_doc_name,
+                    page_number=page_num,
+                    normalized_bbox=bbox,
+                    extracted_value="Unestablished (Missing Evidence)",
+                    compared_against={"portal_declared_land": f"{declared_acres:.2f} Acres" if declared_acres is not None else "Missing"},
+                    discrepancy_magnitude="Acreage unextractable from schedule",
+                ),
+                confidence_or_uncertainty=ConfidenceOrUncertainty(
+                    confidence_score=0.0,
+                    uncertainty_notes="Incomplete evidence: Registered land area unextractable from schedule.",
+                ),
+            )
+
         diff = round(declared_acres - deed_acres, 2)
 
         if diff > 0.05:  # Tolerance threshold for minor survey rounding
@@ -226,7 +297,7 @@ class APHRuleEvaluator:
     def evaluate_fire_noc(
         self,
         application_id: str,
-        expiry_date: date,
+        expiry_date: Optional[date],
         reference_academic_start: Optional[date] = None,
         fire_doc_id: str = "DOC-FIRE-001",
         fire_doc_name: str = "Fire_Safety_NOC.pdf",
@@ -237,6 +308,29 @@ class APHRuleEvaluator:
         rule_id = "APH-2024-FIRE-NOC-VALIDITY"
         if reference_academic_start is None:
             reference_academic_start = date.today()
+
+        if expiry_date is None:
+            return FindingRecord(
+                finding_id=f"FIND-FIRE-{application_id}",
+                assessment_pillar=AssessmentPillar.REGULATORY_COMPLIANCE,
+                outcome=FindingOutcome.REQUIRED_EVIDENCE_MISSING,
+                title="Fire Safety Expiry Date Unestablished",
+                description="Certificate expiry date could not be extracted from the submitted Fire Safety NOC. Human review required.",
+                applicable_rule=self.get_rule_ref(rule_id),
+                evidence=FindingEvidence(
+                    source_document_id=fire_doc_id,
+                    source_document_name=fire_doc_name,
+                    page_number=page_num,
+                    normalized_bbox=bbox,
+                    extracted_value="Unestablished (Missing Evidence)",
+                    compared_against={"current_evaluation_date": reference_academic_start.strftime("%d-%m-%Y")},
+                    discrepancy_magnitude="Missing expiry date",
+                ),
+                confidence_or_uncertainty=ConfidenceOrUncertainty(
+                    confidence_score=0.0,
+                    uncertainty_notes="Incomplete evidence: Expiry date missing from certificate schedule.",
+                ),
+            )
 
         if expiry_date < reference_academic_start:
             outcome = FindingOutcome.DISCREPANCY_FOUND

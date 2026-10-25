@@ -48,3 +48,24 @@ Thumbs.db
 
 # Documentation & Implementation Structure
 structure/
+
+# Synthetic Test Datasets & Archives
+test_data/
+test_dataset/
+*.rar
+*.zip
+*.tar.gz
+aicte_institutions/
+aicte_institutions.rar
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+*.env
+
+# Runtime Logs & Temporary Files
+*.log
+*.tmp
+*.bak
+

@@ -113,6 +113,19 @@ class LocalDatabaseManager:
             );
             """)
 
+            # 6. Cross-Application Certificate Registry (Phase 2 Duplicate Detection)
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS certificate_registry (
+                certificate_id TEXT NOT NULL,
+                application_id TEXT NOT NULL,
+                scenario_id TEXT NOT NULL,
+                institution_name TEXT NOT NULL,
+                document_type TEXT NOT NULL,
+                registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY (certificate_id, application_id)
+            );
+            """)
+
             conn.commit()
 
     def seed_initial_data(self, scenarios_dir: Path, rules_file: Path):
@@ -253,3 +266,71 @@ class LocalDatabaseManager:
             ) VALUES (?, ?, ?, ?, ?, ?, ?)
             """, (document_id, institution_id, document_type, filename, file_path, sha256_hash, dhash))
             conn.commit()
+
+    def check_certificate_collision(self, certificate_id: str, current_application_id: str) -> List[Dict[str, Any]]:
+        """
+        Queries certificate registry to find if certificate_id has been registered
+        by any OTHER application.
+        """
+        if not certificate_id:
+            return []
+        with self.get_connection() as conn:
+            c = conn.cursor()
+            c.execute("""
+            SELECT * FROM certificate_registry
+            WHERE certificate_id = ? AND application_id != ?
+            """, (certificate_id, current_application_id))
+            rows = c.fetchall()
+            return [dict(row) for row in rows]
+
+    def register_certificate(
+        self,
+        certificate_id: str,
+        application_id: str,
+        scenario_id: str,
+        institution_name: str,
+        document_type: str = "FIRE_SAFETY_NOC",
+    ):
+        """Registers a certificate reference for an institution."""
+        if not certificate_id or not application_id:
+            return
+        with self.get_connection() as conn:
+            c = conn.cursor()
+            c.execute("""
+            INSERT OR REPLACE INTO certificate_registry (
+                certificate_id, application_id, scenario_id, institution_name, document_type
+            ) VALUES (?, ?, ?, ?, ?)
+            """, (certificate_id, application_id, scenario_id, institution_name, document_type))
+            conn.commit()
+
+    def seed_certificate_registry(self, resolver):
+        """
+        Indexes all available institution scenario packages to populate
+        the cross-application certificate registry.
+        """
+        from app.ingestion.extractor import PyMuPDFExtractor
+        for item in resolver.list_scenarios():
+            sid = item["scenario_id"]
+            try:
+                p = resolver.resolve_scenario_path(sid)
+                meta_path = p / "application_metadata.json"
+                fire_path = p / "Fire_Safety_NOC.pdf"
+                if not meta_path.exists() or not fire_path.exists():
+                    continue
+
+                with open(meta_path, "r", encoding="utf-8") as f:
+                    meta = json.load(f)
+
+                data = PyMuPDFExtractor.extract_fire_noc_data(str(fire_path))
+                cert_id = data.get("certificate_id")
+                if cert_id:
+                    self.register_certificate(
+                        certificate_id=cert_id,
+                        application_id=meta["application_id"],
+                        scenario_id=sid,
+                        institution_name=meta.get("institution_name", sid),
+                        document_type="FIRE_SAFETY_NOC",
+                    )
+            except Exception:
+                continue
+

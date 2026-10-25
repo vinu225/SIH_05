@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-14-CLEAN-CAMPUS",
+  "institution_name": "Sahyadri Institute of Technology & Management",
+  "declared_land_acres": 5.2,
+  "total_approved_students": 360,
+  "expected_status": "VERIFICATION_SUCCESS",
+  "scenario_category": "Mock verification success",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

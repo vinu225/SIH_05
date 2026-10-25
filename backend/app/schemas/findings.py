@@ -72,3 +72,49 @@ class FindingRecord(BaseModel):
     evidence: FindingEvidence
     confidence_or_uncertainty: ConfidenceOrUncertainty
     officer_resolution: OfficerResolution = Field(default_factory=OfficerResolution)
+
+
+class AggregatedStatus(str, Enum):
+    COMPLIANT = "Compliant"
+    DISCREPANCY_FOUND = "Discrepancy Found"
+    REQUIRES_OFFICER_REVIEW = "Requires Officer Review"
+
+
+class PillarSummary(BaseModel):
+    pillar: AssessmentPillar
+    status: AggregatedStatus
+    total_findings: int
+    compliant_count: int
+    discrepancy_count: int
+    review_required_count: int
+
+
+class CanonicalEvaluationResult(BaseModel):
+    scenario_id: str
+    application_metadata: Dict[str, Any]
+    overall_status: AggregatedStatus
+    pillar_summaries: Dict[str, PillarSummary]
+    findings: list[FindingRecord]
+    evaluated_at: str
+
+
+class OfficerDecisionRequest(BaseModel):
+    application_id: str
+    finding_id: str
+    resolution_status: OfficerResolutionStatus
+    override_outcome: Optional[FindingOutcome] = None
+    justification: str = Field(..., min_length=5, description="Auditable justification for officer decision")
+    statutory_reference: Optional[str] = None
+
+
+class OfficerDecisionResponse(BaseModel):
+    success: bool
+    application_id: str
+    finding_id: str
+    resolution_status: OfficerResolutionStatus
+    officer_id: str
+    role: str
+    timestamp: str
+    audit_event_id: str
+    message: str
+

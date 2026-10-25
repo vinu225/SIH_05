@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-05-MALFORMED-PAYLOAD",
+  "institution_name": "Saraswati College of Technology & Research",
+  "declared_land_acres": 4.0,
+  "total_approved_students": 240,
+  "expected_status": "MALFORMED_PAYLOAD",
+  "scenario_category": "Invalid or malformed payload",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

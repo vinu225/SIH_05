@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-03-UNREADABLE-QR",
+  "institution_name": "Apex National Institute of Management & Science",
+  "declared_land_acres": 5.0,
+  "total_approved_students": 300,
+  "expected_status": "UNREADABLE_QR_CODE",
+  "scenario_category": "Unreadable QR code",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

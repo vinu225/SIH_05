@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-08-SOURCE-UNAVAILABLE",
+  "institution_name": "Deccan Academy of Technology & Architecture",
+  "declared_land_acres": 3.8,
+  "total_approved_students": 240,
+  "expected_status": "SOURCE_UNAVAILABLE",
+  "scenario_category": "Unavailable verification source",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

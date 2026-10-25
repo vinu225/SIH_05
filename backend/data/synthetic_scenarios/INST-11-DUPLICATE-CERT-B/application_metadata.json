@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-11-DUPLICATE-CERT-B",
+  "institution_name": "Rajputana College of Engineering",
+  "declared_land_acres": 4.0,
+  "total_approved_students": 240,
+  "expected_status": "DUPLICATE_CERTIFICATE_IDENTIFIER",
+  "scenario_category": "Duplicate certificate identifier",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

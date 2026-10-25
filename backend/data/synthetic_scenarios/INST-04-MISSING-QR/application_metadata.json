@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-04-MISSING-QR",
+  "institution_name": "Global Horizon College of Engineering",
+  "declared_land_acres": 3.5,
+  "total_approved_students": 200,
+  "expected_status": "MISSING_QR_CODE",
+  "scenario_category": "Missing QR code",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

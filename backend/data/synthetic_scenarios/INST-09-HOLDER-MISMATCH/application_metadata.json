@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-09-HOLDER-MISMATCH",
+  "institution_name": "Kalinga Institute of Industrial Technology",
+  "declared_land_acres": 4.5,
+  "total_approved_students": 300,
+  "expected_status": "INSTITUTION_HOLDER_MISMATCH",
+  "scenario_category": "Institution-holder mismatch",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}

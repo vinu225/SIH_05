@@ -1,0 +1,13 @@
+{
+  "application_id": "APP-2024-INST-07-REVOKED-STATUS",
+  "institution_name": "Coastal Institute of Marine Engineering",
+  "declared_land_acres": 5.0,
+  "total_approved_students": 180,
+  "expected_status": "SIMULATED_REVOKED_STATUS",
+  "scenario_category": "Simulated revoked or inactive status",
+  "documents_included": [
+    "Fire_Safety_NOC.pdf",
+    "Land_Title_Deed.pdf",
+    "Faculty_Portfolio.pdf"
+  ]
+}
