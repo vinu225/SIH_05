@@ -1,0 +1,4 @@
+SYNTHETIC LIBRARY INVENTORY — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1005
+Declared book count: 5000
+Evidence status: inventory list present; visual evidence incomplete.

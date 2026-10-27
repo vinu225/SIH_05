@@ -1,0 +1,4 @@
+SYNTHETIC FLOOR PLAN DESCRIPTION — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1001
+Declared classrooms: 12
+Declared laboratory rooms: 3

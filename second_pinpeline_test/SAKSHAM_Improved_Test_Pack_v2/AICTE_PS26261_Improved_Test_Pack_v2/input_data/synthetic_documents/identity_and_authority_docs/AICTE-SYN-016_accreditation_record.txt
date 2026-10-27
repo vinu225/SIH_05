@@ -1,0 +1,6 @@
+SYNTHETIC ACCREDITATION RECORD — TEST DATA ONLY
+Institution ID: SYN-AICTE-1004
+Submitted certificate reference: SYN-CERT-9999
+Synthetic issuer registry reference for institution: SYN-CERT-2005
+Issue date: 2025-02-01
+Expiry date: 2027-02-01

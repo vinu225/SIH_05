@@ -1,0 +1,5 @@
+SYNTHETIC CERTIFICATE — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1004
+Certificate reference: SYN-CERT-2005
+Issue date: 2025-02-01
+Expiry date: 2027-02-01

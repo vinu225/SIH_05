@@ -1,0 +1,4 @@
+SYNTHETIC CERTIFICATE — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1001
+Certificate reference: SYN-CERT-2030
+Mock issuer source status: PENDING

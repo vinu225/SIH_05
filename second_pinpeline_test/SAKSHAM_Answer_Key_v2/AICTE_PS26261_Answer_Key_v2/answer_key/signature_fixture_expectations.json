@@ -1,0 +1,30 @@
+{
+  "notice": "Supplementary detached-CMS checks. These do not add case IDs to the 30-case suite and are not embedded PDF signature field tests.",
+  "fixtures": [
+    {
+      "fixture_id": "CMS-VALID-TRUSTED",
+      "payload": "input_data/synthetic_documents/signature_fixtures/AICTE-SYN-018_document.pdf",
+      "signature": "input_data/synthetic_documents/signature_fixtures/AICTE-SYN-018_signature.p7s",
+      "trust_root": "input_data/synthetic_documents/signature_fixtures/test_root_A.pem",
+      "expected_integrity": "VALID",
+      "expected_trust": "TRUSTED_TEST_CA"
+    },
+    {
+      "fixture_id": "CMS-INVALID-AFTER-TAMPER",
+      "payload": "input_data/synthetic_documents/signature_fixtures/AICTE-SYN-019_document.pdf",
+      "signature": "input_data/synthetic_documents/signature_fixtures/AICTE-SYN-019_signature.p7s",
+      "trust_root": "input_data/synthetic_documents/signature_fixtures/test_root_A.pem",
+      "expected_integrity": "INVALID",
+      "expected_trust": "NOT_REACHED"
+    },
+    {
+      "fixture_id": "CMS-VALID-BUT-UNTRUSTED",
+      "payload": "input_data/synthetic_documents/signature_fixtures/aux_document_C.pdf",
+      "signature": "input_data/synthetic_documents/signature_fixtures/aux_signature_C.p7s",
+      "trust_root": "input_data/synthetic_documents/signature_fixtures/test_root_A.pem",
+      "expected_integrity": "VALID_CRYPTOGRAPHIC_SIGNATURE",
+      "expected_trust": "UNTRUSTED_TEST_CA",
+      "verify_integrity_against_own_root": "input_data/synthetic_documents/signature_fixtures/test_root_C.pem"
+    }
+  ]
+}

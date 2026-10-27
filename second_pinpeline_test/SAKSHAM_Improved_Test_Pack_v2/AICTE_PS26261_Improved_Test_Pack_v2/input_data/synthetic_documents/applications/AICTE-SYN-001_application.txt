@@ -1,0 +1,9 @@
+SYNTHETIC TEST DOCUMENT — NOT AN OFFICIAL AICTE RECORD
+Application ID: SYN-APP-0001
+Institution ID: SYN-AICTE-1001
+Institution Name: Northstar Institute of Technology (Synthetic)
+Application Category: Extension of Approval (EoA)
+Requested academic year: 2026-27
+Programme: Computer Engineering
+Requested intake: 60
+Submission date: 2026-10-20

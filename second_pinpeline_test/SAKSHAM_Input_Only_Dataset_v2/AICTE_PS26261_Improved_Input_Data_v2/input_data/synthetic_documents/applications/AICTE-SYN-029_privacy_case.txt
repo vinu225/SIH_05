@@ -1,0 +1,6 @@
+SYNTHETIC PRIVACY TEST INPUT — NOT AN OFFICIAL RECORD
+Institution ID: SYN-AICTE-1005
+Contact name: Synthetic Contact C
+Contact email: contact-c@example.invalid
+Contact phone: 0000000000
+These are fabricated values for testing field-level authorization and display masking.

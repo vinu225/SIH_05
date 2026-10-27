@@ -1,0 +1,4 @@
+SYNTHETIC LAB INVENTORY — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1001
+Declared workstation count: 30
+Declared microscope count: 4

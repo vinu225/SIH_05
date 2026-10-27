@@ -1,0 +1,8 @@
+SYNTHETIC TEST DOCUMENT — NOT AN OFFICIAL AICTE RECORD
+Application ID: SYN-APP-0003
+Institution ID: SYN-AICTE-1003
+Institution Name: Central Valley Technical Institute (Synthetic)
+Application Category: Programme Change
+Current programme: Civil Engineering
+Proposed change: Update lab facility details
+Submission date: 2026-10-20

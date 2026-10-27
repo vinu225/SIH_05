@@ -1,14 +1,25 @@
-# Node & Frontend dependencies
+# ==============================================================================
+# Node & Frontend Dependencies & Builds
+# ==============================================================================
 node_modules/
-frontend/node_modules/
+**/node_modules/
 dist/
+**/dist/
+frontend/node_modules/
 frontend/dist/
+aicte-validation-portal/node_modules/
+aicte-validation-portal/dist/
+.eslintcache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
+# ==============================================================================
 # Python & Virtual Environments
+# ==============================================================================
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -19,7 +30,6 @@ venv/
 ENV/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
@@ -27,29 +37,63 @@ lib/
 lib64/
 parts/
 sdist/
-var/
 wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 
-# Testing & Caches
+# ==============================================================================
+# Testing, Coverage & Caches
+# ==============================================================================
 .pytest_cache/
+**/.pytest_cache/
 .coverage
 htmlcov/
+.mypy_cache/
+.ruff_cache/
 
-# IDE & OS
+# ==============================================================================
+# Database & Runtime Upload Vault
+# ==============================================================================
+# SQLite runtime journal/WAL temporary locks
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Ignore runtime uploaded documents in vault, but preserve vault directory
+backend/data/vault/*
+!backend/data/vault/.gitkeep
+
+# ==============================================================================
+# Docker Local Overrides
+# ==============================================================================
+docker-compose.override.yml
+*.local.yml
+
+# ==============================================================================
+# IDE, Editor & OS Artifacts
+# ==============================================================================
 .vscode/
 .idea/
+.gemini/
+.cursor/
+.windsurf/
 *.swp
 *.swo
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 
+# ==============================================================================
 # Documentation & Implementation Structure
+# ==============================================================================
 structure/
 
+# ==============================================================================
 # Synthetic Test Datasets & Archives
+# ==============================================================================
 test_data/
 test_dataset/
 *.rar
@@ -58,14 +102,19 @@ test_dataset/
 aicte_institutions/
 aicte_institutions.rar
 
+# ==============================================================================
 # Environment & Secrets
+# ==============================================================================
 .env
 .env.local
 .env.*.local
 *.env
+# Ensure template example is committed
+!.env.example
 
+# ==============================================================================
 # Runtime Logs & Temporary Files
+# ==============================================================================
 *.log
 *.tmp
 *.bak
-

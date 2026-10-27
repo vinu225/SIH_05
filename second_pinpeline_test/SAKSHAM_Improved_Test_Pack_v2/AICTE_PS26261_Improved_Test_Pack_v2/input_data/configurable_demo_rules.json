@@ -1,0 +1,73 @@
+{
+  "dataset_notice": "Synthetic prototype evaluation rules only; not official AICTE requirements. Never use these values to make real regulatory decisions.",
+  "checklist_versions": {
+    "EoA": "DEMO-EoA-v1",
+    "Programme Change": "DEMO-PC-v1",
+    "Accreditation Update": "DEMO-ACC-v1"
+  },
+  "expiry_evaluation_date": "2026-10-25",
+  "required_document_examples": {
+    "EoA": [
+      "application_form",
+      "undertaking",
+      "previous_EoA_reference"
+    ],
+    "Programme Change": [
+      "application_form",
+      "supporting_NOC_if_applicable"
+    ],
+    "Accreditation Update": [
+      "application_form",
+      "accreditation_certificate"
+    ]
+  },
+  "demo_rules": [
+    {
+      "rule_id": "DEMO-001",
+      "description": "Required document missing => RECTIFICATION_REQUIRED"
+    },
+    {
+      "rule_id": "DEMO-002",
+      "description": "Expiry date before evaluation date => EXPIRED / rectification or review"
+    },
+    {
+      "rule_id": "DEMO-003",
+      "description": "Cross-record identifier mismatch => MANUAL_REVIEW"
+    },
+    {
+      "rule_id": "DEMO-004",
+      "description": "Issuer source unavailable => VERIFICATION_PENDING, never mark verified"
+    },
+    {
+      "rule_id": "DEMO-005",
+      "description": "Potential tampering or metadata anomaly => MANUAL_REVIEW, not a fraud verdict"
+    },
+    {
+      "rule_id": "DEMO-006",
+      "description": "Infrastructure evidence insufficient or inconsistent => additional evidence / official review"
+    },
+    {
+      "rule_id": "DEMO-007",
+      "description": "Role not authorized => DENY and audit the attempt"
+    },
+    {
+      "rule_id": "DEMO-008",
+      "description": "Faculty count below configured prototype threshold => MANUAL_REVIEW; threshold is synthetic QA configuration only, not an official AICTE requirement."
+    }
+  ],
+  "faculty_review_thresholds": {
+    "Computer Engineering": {
+      "minimum_count": 20,
+      "rule_id": "DEMO-008",
+      "decision": "MANUAL_REVIEW",
+      "source": "SYNTHETIC_QA_FIXTURE_ONLY",
+      "official_aicte_requirement": false
+    },
+    "default": {
+      "minimum_count": null,
+      "decision": "NO_AUTOMATIC_THRESHOLD",
+      "source": "UNCONFIGURED",
+      "official_aicte_requirement": false
+    }
+  }
+}

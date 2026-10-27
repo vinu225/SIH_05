@@ -1,0 +1,84 @@
+[
+  {
+    "institution_id": "SYN-AICTE-1001",
+    "institution_name": "Northstar Institute of Technology (Synthetic)",
+    "state": "Madhya Pradesh",
+    "city": "Bhopal",
+    "application_category": "Extension of Approval (EoA)",
+    "approved_programmes": [
+      "Computer Engineering",
+      "Mechanical Engineering"
+    ],
+    "approved_intake": {
+      "Computer Engineering": 60,
+      "Mechanical Engineering": 60
+    },
+    "faculty_count": 42,
+    "ter_payment_status": "PAID",
+    "previous_eoa_status": "APPROVED"
+  },
+  {
+    "institution_id": "SYN-AICTE-1002",
+    "institution_name": "Riverbend College of Engineering (Synthetic)",
+    "state": "Maharashtra",
+    "city": "Pune",
+    "application_category": "Extension of Approval (EoA)",
+    "approved_programmes": [
+      "Computer Engineering"
+    ],
+    "approved_intake": {
+      "Computer Engineering": 60
+    },
+    "faculty_count": 18,
+    "ter_payment_status": "PENDING",
+    "previous_eoa_status": "APPROVED"
+  },
+  {
+    "institution_id": "SYN-AICTE-1003",
+    "institution_name": "Central Valley Technical Institute (Synthetic)",
+    "state": "Rajasthan",
+    "city": "Jaipur",
+    "application_category": "Programme Change",
+    "approved_programmes": [
+      "Civil Engineering"
+    ],
+    "approved_intake": {
+      "Civil Engineering": 60
+    },
+    "faculty_count": 25,
+    "ter_payment_status": "PAID",
+    "previous_eoa_status": "APPROVED"
+  },
+  {
+    "institution_id": "SYN-AICTE-1004",
+    "institution_name": "Bluepeak School of Engineering (Synthetic)",
+    "state": "Gujarat",
+    "city": "Ahmedabad",
+    "application_category": "Accreditation Update",
+    "approved_programmes": [
+      "Electrical Engineering"
+    ],
+    "approved_intake": {
+      "Electrical Engineering": 60
+    },
+    "faculty_count": 31,
+    "ter_payment_status": "PAID",
+    "previous_eoa_status": "APPROVED"
+  },
+  {
+    "institution_id": "SYN-AICTE-1005",
+    "institution_name": "Lakeside Polytechnic (Synthetic)",
+    "state": "Uttar Pradesh",
+    "city": "Lucknow",
+    "application_category": "Extension of Approval (EoA)",
+    "approved_programmes": [
+      "Information Technology"
+    ],
+    "approved_intake": {
+      "Information Technology": 60
+    },
+    "faculty_count": 20,
+    "ter_payment_status": "PAID",
+    "previous_eoa_status": "APPROVED"
+  }
+]

@@ -1,0 +1,73 @@
+[
+  {
+    "source_id": "SYN-ISSUER-01",
+    "record_type": "accreditation",
+    "institution_id": "SYN-AICTE-1001",
+    "reference": "SYN-CERT-2002",
+    "status": "ACTIVE",
+    "issue_date": "2025-01-01",
+    "expiry_date": "2027-01-01",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-02",
+    "record_type": "accreditation",
+    "institution_id": "SYN-AICTE-1004",
+    "reference": "SYN-CERT-2005",
+    "status": "ACTIVE",
+    "issue_date": "2025-02-01",
+    "expiry_date": "2027-02-01",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-03",
+    "record_type": "TER_payment",
+    "institution_id": "SYN-AICTE-1001",
+    "reference": "SYN-TER-3004",
+    "status": "PAID",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-04",
+    "record_type": "TER_payment",
+    "institution_id": "SYN-AICTE-1002",
+    "reference": "SYN-TER-3012",
+    "status": "SOURCE_UNAVAILABLE",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-05",
+    "record_type": "NOC",
+    "institution_id": "SYN-AICTE-1003",
+    "reference": "SYN-NOC-5023",
+    "status": "ACTIVE",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-06",
+    "record_type": "signature",
+    "institution_id": "SYN-AICTE-1001",
+    "reference": "SYN-SIG-1801",
+    "status": "VALID",
+    "trust_fixture": "SYN-TEST-CA-01",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-07",
+    "record_type": "signature",
+    "institution_id": "SYN-AICTE-1001",
+    "reference": "SYN-SIG-1901",
+    "status": "INVALID_OR_UNTRUSTED",
+    "trust_fixture": "SYN-UNKNOWN-CA",
+    "test_only": true
+  },
+  {
+    "source_id": "SYN-ISSUER-08",
+    "record_type": "NOC",
+    "institution_id": "SYN-AICTE-1003",
+    "reference": "SYN-NOC-5003",
+    "status": "ACTIVE",
+    "test_only": true,
+    "fixture_note": "Added to align AICTE-SYN-003 submitted NOC with its intended positive expected outcome; does not replace mismatch record SYN-NOC-5023."
+  }
+]

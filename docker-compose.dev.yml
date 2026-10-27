@@ -1,0 +1,47 @@
+services:
+  # ============================================================================
+  # Development Mode: Backend with Live Reload
+  # ============================================================================
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: aicte-backend-dev
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/data:/app/data
+      - ./backend/tests:/app/tests
+      - ./test_data:/app/test_data
+    environment:
+      - PYTHONPATH=/app
+      - AICTE_DATASET_DIR=/app/data/synthetic_scenarios
+      - PORT=8000
+      - HOST=0.0.0.0
+    ports:
+      - "8000:8000"
+    networks:
+      - aicte-network
+
+  # ============================================================================
+  # Development Mode: Frontend with Vite Hot Module Replacement (HMR)
+  # ============================================================================
+  frontend:
+    image: node:20-alpine
+    container_name: aicte-frontend-dev
+    working_dir: /app
+    volumes:
+      - ./aicte-validation-portal:/app
+      - /app/node_modules
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
+    ports:
+      - "5173:5173"
+      - "3000:5173"
+    depends_on:
+      - backend
+    networks:
+      - aicte-network
+
+networks:
+  aicte-network:
+    driver: bridge

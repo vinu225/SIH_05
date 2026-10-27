@@ -1,0 +1,5 @@
+SYNTHETIC FACULTY RECORD — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1005
+Programme: Information Technology
+Faculty count: 20
+Record reference: SYN-FAC-6006

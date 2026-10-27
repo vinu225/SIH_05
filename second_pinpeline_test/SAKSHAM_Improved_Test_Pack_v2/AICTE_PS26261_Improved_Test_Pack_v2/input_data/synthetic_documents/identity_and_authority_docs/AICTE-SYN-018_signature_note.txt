@@ -1,0 +1,3 @@
+SYNTHETIC DOCUMENT REFERENCE — TEST DATA ONLY
+Document reference: SYN-SIG-1801
+The corresponding PDF and detached signature sidecar are supplied in the signature fixtures directory.

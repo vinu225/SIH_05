@@ -1,0 +1,434 @@
+{
+  "dataset_id": "AICTE-PS26261-SYNTHETIC-v2",
+  "dataset_notice": "All records are synthetic. This file contains inputs only; expected outcomes are stored separately in answer_key.",
+  "case_count": 30,
+  "cases": [
+    {
+      "case_id": "AICTE-SYN-001",
+      "application_id": "SYN-APP-0001",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-001_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-001_undertaking.txt",
+        "synthetic_documents/applications/AICTE-SYN-001_previous_eoa.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-002",
+      "application_id": "SYN-APP-0002",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-002_application.txt",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-002_accreditation.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-003",
+      "application_id": "SYN-APP-0003",
+      "institution_id": "SYN-AICTE-1003",
+      "institution_name": "Central Valley Technical Institute (Synthetic)",
+      "application_category": "Programme Change",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-003_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-003_noc.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-004",
+      "application_id": "SYN-APP-0004",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-004_application.txt",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-004_ter_receipt.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-005",
+      "application_id": "SYN-APP-0005",
+      "institution_id": "SYN-AICTE-1004",
+      "institution_name": "Bluepeak School of Engineering (Synthetic)",
+      "application_category": "Accreditation Update",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-005_application.txt",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-005_accreditation.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-006",
+      "application_id": "SYN-APP-0006",
+      "institution_id": "SYN-AICTE-1005",
+      "institution_name": "Lakeside Polytechnic (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-006_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-006_faculty_record.txt",
+        "synthetic_documents/applications/AICTE-SYN-006_previous_eoa.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-007",
+      "application_id": "SYN-APP-0007",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-007_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-007_previous_eoa.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-008",
+      "application_id": "SYN-APP-0008",
+      "institution_id": "SYN-AICTE-1004",
+      "institution_name": "Bluepeak School of Engineering (Synthetic)",
+      "application_category": "Accreditation Update",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-008_application.txt",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-008_accreditation_expired.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-009",
+      "application_id": "SYN-APP-0009",
+      "institution_id": "SYN-AICTE-1003",
+      "institution_name": "Central Valley Technical Institute (Synthetic)",
+      "application_category": "Programme Change",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-009_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-009_noc_unsigned.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-010",
+      "application_id": "SYN-APP-0010",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-010_application_mismatch.txt",
+        "synthetic_documents/applications/AICTE-SYN-010_previous_eoa.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-011",
+      "application_id": "SYN-APP-0011",
+      "institution_id": "SYN-AICTE-1003",
+      "institution_name": "Central Valley Technical Institute (Synthetic)",
+      "application_category": "Programme Change",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-011_application_intake_mismatch.txt",
+        "synthetic_documents/applications/AICTE-SYN-011_programme_record.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-012",
+      "application_id": "SYN-APP-0012",
+      "institution_id": "SYN-AICTE-1002",
+      "institution_name": "Riverbend College of Engineering (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-012_application.txt",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-012_ter_receipt.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-013",
+      "application_id": "SYN-APP-0013",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-013_application_record.txt",
+        "synthetic_documents/scanned_ocr/AICTE-SYN-013_application_scan.png",
+        "synthetic_documents/scanned_ocr/AICTE-SYN-013_application_scan.pdf"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "image-only-pdf",
+        "ocr",
+        "scanned-pdf",
+        "visual-document-evidence"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-014",
+      "application_id": "SYN-APP-0014",
+      "institution_id": "SYN-AICTE-1005",
+      "institution_name": "Lakeside Polytechnic (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-014_undertaking_record.txt",
+        "synthetic_documents/scanned_ocr/AICTE-SYN-014_undertaking_scan.png",
+        "synthetic_documents/scanned_ocr/AICTE-SYN-014_undertaking_scan.pdf"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "image-only-pdf",
+        "ocr",
+        "scanned-pdf",
+        "visual-document-evidence"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-015",
+      "application_id": "SYN-APP-0015",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-015_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-015_attachment_A.txt",
+        "synthetic_documents/applications/AICTE-SYN-015_attachment_B.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "content-hash-duplicate"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-016",
+      "application_id": "SYN-APP-0016",
+      "institution_id": "SYN-AICTE-1004",
+      "institution_name": "Bluepeak School of Engineering (Synthetic)",
+      "application_category": "Accreditation Update",
+      "document_files": [
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-016_accreditation_record.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-017",
+      "application_id": "SYN-APP-0017",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-017_undertaking_record.txt",
+        "synthetic_documents/applications/AICTE-SYN-017_undertaking_record.pdf"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "pdf-metadata"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-018",
+      "application_id": "SYN-APP-0018",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-018_signature_note.txt",
+        "synthetic_documents/signature_fixtures/AICTE-SYN-018_document.pdf",
+        "synthetic_documents/signature_fixtures/AICTE-SYN-018_signature.p7s",
+        "synthetic_documents/signature_fixtures/test_root_A.pem",
+        "synthetic_documents/signature_fixtures/signer_A.pem"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "signature-fixture"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-019",
+      "application_id": "SYN-APP-0019",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-019_signature_note.txt",
+        "synthetic_documents/signature_fixtures/AICTE-SYN-019_document.pdf",
+        "synthetic_documents/signature_fixtures/AICTE-SYN-019_signature.p7s",
+        "synthetic_documents/signature_fixtures/test_root_A.pem",
+        "synthetic_documents/signature_fixtures/signer_A.pem"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "signature-fixture"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-020",
+      "application_id": "SYN-APP-0020",
+      "institution_id": "SYN-AICTE-1004",
+      "institution_name": "Bluepeak School of Engineering (Synthetic)",
+      "application_category": "Accreditation Update",
+      "document_files": [
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-020_certificate_qr_reference.txt",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-020_certificate_qr_reference.png",
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-020_certificate_qr_reference.pdf"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "qr"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-021",
+      "application_id": "SYN-APP-0021",
+      "institution_id": "SYN-AICTE-1004",
+      "institution_name": "Bluepeak School of Engineering (Synthetic)",
+      "application_category": "Accreditation Update",
+      "document_files": [
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-021_accreditation_record.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-022",
+      "application_id": "SYN-APP-0022",
+      "institution_id": "SYN-AICTE-1003",
+      "institution_name": "Central Valley Technical Institute (Synthetic)",
+      "application_category": "Programme Change",
+      "document_files": [
+        "synthetic_documents/identity_and_authority_docs/AICTE-SYN-022_noc_record.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-023",
+      "application_id": "SYN-APP-0023",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-023_lab_inventory.txt",
+        "synthetic_documents/infrastructure_evidence/synthetic_lab_photo_description_023.txt",
+        "synthetic_documents/infrastructure_evidence/synthetic_lab_visual_evidence_023.png"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "visual-document-evidence"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-024",
+      "application_id": "SYN-APP-0024",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-024_floor_plan.txt",
+        "synthetic_documents/infrastructure_evidence/synthetic_classroom_photo_description_024.txt",
+        "synthetic_documents/infrastructure_evidence/synthetic_classroom_visual_evidence_024.png"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "visual-document-evidence"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-025",
+      "application_id": "SYN-APP-0025",
+      "institution_id": "SYN-AICTE-1005",
+      "institution_name": "Lakeside Polytechnic (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-025_library_inventory.txt",
+        "synthetic_documents/infrastructure_evidence/synthetic_library_photo_description_025.txt",
+        "synthetic_documents/infrastructure_evidence/synthetic_library_visual_evidence_025.png"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "visual-document-evidence"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-026",
+      "application_id": "SYN-APP-0026",
+      "institution_id": "SYN-AICTE-1002",
+      "institution_name": "Riverbend College of Engineering (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-026_faculty_record.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": [
+        "configurable-demo-rule"
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-027",
+      "application_id": "SYN-APP-0027",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-027_audit_case.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-028",
+      "application_id": "SYN-APP-0028",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-028_restricted_record_request.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-029",
+      "application_id": "SYN-APP-0029",
+      "institution_id": "SYN-AICTE-1005",
+      "institution_name": "Lakeside Polytechnic (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-029_privacy_case.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    },
+    {
+      "case_id": "AICTE-SYN-030",
+      "application_id": "SYN-APP-0030",
+      "institution_id": "SYN-AICTE-1001",
+      "institution_name": "Northstar Institute of Technology (Synthetic)",
+      "application_category": "EoA",
+      "document_files": [
+        "synthetic_documents/applications/AICTE-SYN-030_end_to_end_application.txt",
+        "synthetic_documents/applications/AICTE-SYN-030_undertaking.txt",
+        "synthetic_documents/applications/AICTE-SYN-030_certificate.txt"
+      ],
+      "synthetic_only": true,
+      "test_capabilities": []
+    }
+  ]
+}

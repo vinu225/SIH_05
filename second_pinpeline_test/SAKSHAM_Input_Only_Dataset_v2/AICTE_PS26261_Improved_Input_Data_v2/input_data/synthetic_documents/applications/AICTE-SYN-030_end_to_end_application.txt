@@ -1,0 +1,7 @@
+SYNTHETIC END-TO-END APPLICATION — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1001
+Programme: Computer Engineering
+Requested intake: 90
+Synthetic record intake: 60
+Certificate reference: SYN-CERT-2030
+Submission date: 2026-10-20

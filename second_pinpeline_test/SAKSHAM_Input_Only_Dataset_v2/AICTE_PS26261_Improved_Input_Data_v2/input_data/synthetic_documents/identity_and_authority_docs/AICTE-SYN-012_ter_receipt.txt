@@ -1,0 +1,5 @@
+SYNTHETIC TER RECEIPT — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1002
+Payment reference: SYN-TER-3012
+Claimed status: PAID
+Note: Mock source service is configured as unavailable for this test.

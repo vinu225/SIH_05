@@ -1,0 +1,6 @@
+SYNTHETIC PRIOR APPROVAL RECORD — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1001
+Institution Name: Northstar Institute of Technology (Synthetic)
+Previous EoA status: APPROVED
+Programme: Computer Engineering
+Approved intake: 60

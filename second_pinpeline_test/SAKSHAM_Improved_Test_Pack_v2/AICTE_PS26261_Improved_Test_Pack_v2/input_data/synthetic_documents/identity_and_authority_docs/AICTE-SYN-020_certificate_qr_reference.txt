@@ -1,0 +1,4 @@
+SYNTHETIC CERTIFICATE RECORD — TEST DATA ONLY
+Institution ID: SYN-AICTE-1004
+Certificate reference: SYN-CERT-2005
+Status printed on record: ACTIVE

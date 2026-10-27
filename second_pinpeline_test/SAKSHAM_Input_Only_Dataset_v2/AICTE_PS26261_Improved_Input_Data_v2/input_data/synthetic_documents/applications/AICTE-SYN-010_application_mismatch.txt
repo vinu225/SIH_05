@@ -1,0 +1,4 @@
+SYNTHETIC APPLICATION — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-9999
+Institution Name: Northstar Institute of Technology (Synthetic)
+Category: EoA

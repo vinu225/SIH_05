@@ -1,0 +1,6 @@
+SYNTHETIC CERTIFICATE — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1004
+Certificate reference: SYN-CERT-2008
+Issue date: 2021-01-01
+Expiry date: 2024-12-31
+Status: EXPIRED

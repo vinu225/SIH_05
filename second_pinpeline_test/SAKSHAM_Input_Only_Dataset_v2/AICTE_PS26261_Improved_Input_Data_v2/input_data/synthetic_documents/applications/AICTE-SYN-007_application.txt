@@ -1,0 +1,6 @@
+SYNTHETIC APPLICATION — TEST FIXTURE ONLY
+Application ID: SYN-APP-0007
+Institution ID: SYN-AICTE-1001
+Category: EoA
+Prior EoA reference: SYN-EOA-7007
+Required undertaking: NOT ATTACHED

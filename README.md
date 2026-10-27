@@ -6,7 +6,31 @@
 
 ---
 
-## Quick Start (Running Locally)
+## Quick Start with Docker (Recommended)
+
+Run the entire platform (FastAPI backend + React Scrutiny Validation Portal) in isolated containers with a single command:
+
+```bash
+docker compose up --build -d
+```
+
+* **AICTE Validation Portal (Frontend):** `http://localhost:3000` (also reachable on `http://localhost:5173`)
+* **API Documentation & Swagger UI:** `http://localhost:8000/docs`
+* **Backend Healthcheck:** `http://localhost:8000/api/v1/health`
+
+To stop containers:
+```bash
+docker compose down
+```
+
+For live development mode with code hot-reloading:
+```bash
+docker compose -f docker-compose.dev.yml up --build
+```
+
+---
+
+## Quick Start (Running Locally Without Docker)
 
 ### 1. Start the FastAPI Backend Service:
 ```powershell
@@ -17,12 +41,13 @@ python -m uvicorn app.main:app --reload --port 8000
 * **API Documentation & Swagger UI:** `http://localhost:8000/docs`
 * **Healthcheck:** `http://localhost:8000/api/v1/health`
 
-### 2. Start the React Scrutiny Cockpit (Frontend):
+### 2. Start the AICTE Validation Portal (Frontend):
 ```powershell
-cd frontend
+cd aicte-validation-portal
+npm install
 npm run dev
 ```
-* **Interactive Scrutiny Cockpit:** `http://localhost:3000`
+* **Interactive Scrutiny Cockpit:** `http://localhost:5173`
 
 ### 3. Run Backend Test Suite:
 ```powershell

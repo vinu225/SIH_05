@@ -1,0 +1,4 @@
+SYNTHETIC PRIOR RECORD — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1001
+Institution Name: Northstar Institute of Technology (Synthetic)
+Status: APPROVED

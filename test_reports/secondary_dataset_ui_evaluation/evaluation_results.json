@@ -1,0 +1,815 @@
+{
+  "predictions_file": "test_reports\\secondary_dataset_ui_evaluation\\predictions_for_evaluation.csv",
+  "answers_file": "second_pinpeline_test\\SAKSHAM_Answer_Key_v2\\AICTE_PS26261_Answer_Key_v2\\answer_key\\expected_outcomes.csv",
+  "expected_cases": 30,
+  "prediction_rows": 30,
+  "unique_prediction_case_ids": 30,
+  "missing_case_ids": [],
+  "unexpected_case_ids": [],
+  "duplicate_prediction_case_ids": [],
+  "field_metrics": {
+    "expected_extraction_status": {
+      "compared": 30,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "expected_source_verification_status": {
+      "compared": 30,
+      "correct": 6,
+      "accuracy": 0.2
+    },
+    "expected_anomaly_label": {
+      "compared": 30,
+      "correct": 2,
+      "accuracy": 0.06666666666666667
+    },
+    "expected_infrastructure_status": {
+      "compared": 30,
+      "correct": 24,
+      "accuracy": 0.8
+    },
+    "expected_workflow_decision": {
+      "compared": 30,
+      "correct": 5,
+      "accuracy": 0.16666666666666666
+    }
+  },
+  "case_results": [
+    {
+      "case_id": "AICTE-SYN-001",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_infrastructure_status",
+          "expected": "NO_GAP_FLAGGED",
+          "predicted": "NOT_ASSESSED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-002",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-003",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-004",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-005",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-006",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_REQUIRED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_infrastructure_status",
+          "expected": "NO_GAP_FLAGGED",
+          "predicted": "NOT_ASSESSED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-007",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "MISSING_DOCUMENT",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "RECTIFICATION_REQUIRED",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-008",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "EXPIRED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "RECTIFICATION_OR_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-009",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "INCOMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "MANUAL_REVIEW_REQUIRED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "RECTIFICATION_REQUIRED",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-010",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "CROSS_RECORD_MISMATCH",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-011",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "CROSS_RECORD_MISMATCH",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-012",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "SOURCE_UNAVAILABLE",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "VERIFICATION_PENDING",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-013",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "LOW_CONFIDENCE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_ATTEMPTED",
+          "predicted": "VERIFIED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "OCR_UNCERTAINTY",
+          "predicted": "NONE"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-014",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "LOW_CONFIDENCE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_ATTEMPTED",
+          "predicted": "VERIFIED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "OCR_UNCERTAINTY",
+          "predicted": "NONE"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-015",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "DUPLICATE_DOCUMENT",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-016",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "MISMATCH_DETECTED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "POTENTIAL_ALTERATION",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-017",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "PENDING",
+          "predicted": "VERIFIED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "METADATA_ANOMALY",
+          "predicted": "NONE"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-018",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "MANUAL_REVIEW_REQUIRED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "MANUAL_REVIEW"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-019",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "MISMATCH_DETECTED",
+          "predicted": "MANUAL_REVIEW_REQUIRED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "SIGNATURE_CHECK_FAILURE",
+          "predicted": "NONE"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-020",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "MANUAL_REVIEW"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-021",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "SOURCE_UNAVAILABLE",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "VERIFICATION_PENDING",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-022",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "MISMATCH_DETECTED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "SOURCE_MISMATCH",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-023",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_REQUIRED",
+          "predicted": "VERIFIED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "INFRASTRUCTURE_DISCREPANCY",
+          "predicted": "NONE"
+        },
+        {
+          "field": "expected_infrastructure_status",
+          "expected": "POSSIBLE_GAP",
+          "predicted": "NOT_ASSESSED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "ADDITIONAL_EVIDENCE_REQUIRED",
+          "predicted": "MANUAL_REVIEW"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-024",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_REQUIRED",
+          "predicted": "VERIFIED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "INFRASTRUCTURE_DISCREPANCY",
+          "predicted": "NONE"
+        },
+        {
+          "field": "expected_infrastructure_status",
+          "expected": "POSSIBLE_GAP",
+          "predicted": "NOT_ASSESSED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PHYSICAL_REVIEW_RECOMMENDED",
+          "predicted": "MANUAL_REVIEW"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-025",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "INCOMPLETE"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_REQUIRED",
+          "predicted": "VERIFIED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "INSUFFICIENT_EVIDENCE",
+          "predicted": "NONE"
+        },
+        {
+          "field": "expected_infrastructure_status",
+          "expected": "INDETERMINATE",
+          "predicted": "NOT_ASSESSED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "ADDITIONAL_EVIDENCE_REQUIRED",
+          "predicted": "MANUAL_REVIEW"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-026",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "NOT_REQUIRED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "CONFIGURABLE_RULE_FLAG",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_infrastructure_status",
+          "expected": "POSSIBLE_GAP",
+          "predicted": "NOT_ASSESSED"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-027",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-028",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "NOT_ACCESSIBLE_TO_ROLE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "ACCESS_DENIED",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-029",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "COMPLETE",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "NONE",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "PASS_IF_MASKED",
+          "predicted": "BLOCKED"
+        }
+      ]
+    },
+    {
+      "case_id": "AICTE-SYN-030",
+      "present_in_answers": true,
+      "present_in_predictions": true,
+      "field_mismatches": [
+        {
+          "field": "expected_extraction_status",
+          "expected": "MIXED",
+          "predicted": "REJECTED_UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_source_verification_status",
+          "expected": "VERIFICATION_PENDING",
+          "predicted": "NOT_ATTEMPTED"
+        },
+        {
+          "field": "expected_anomaly_label",
+          "expected": "CROSS_RECORD_MISMATCH",
+          "predicted": "UNSUPPORTED_FORMAT"
+        },
+        {
+          "field": "expected_workflow_decision",
+          "expected": "MANUAL_REVIEW",
+          "predicted": "BLOCKED"
+        }
+      ]
+    }
+  ],
+  "warning": "Synthetic benchmark only; scores measure agreement with supplied test expectations, not real-world regulatory accuracy."
+}

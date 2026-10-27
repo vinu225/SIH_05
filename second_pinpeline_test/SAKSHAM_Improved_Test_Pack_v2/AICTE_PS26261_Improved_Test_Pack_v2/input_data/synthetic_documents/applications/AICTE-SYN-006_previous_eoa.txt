@@ -1,0 +1,5 @@
+SYNTHETIC PRIOR EoA — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1005
+Programme: Information Technology
+Approved intake: 60
+Status: APPROVED

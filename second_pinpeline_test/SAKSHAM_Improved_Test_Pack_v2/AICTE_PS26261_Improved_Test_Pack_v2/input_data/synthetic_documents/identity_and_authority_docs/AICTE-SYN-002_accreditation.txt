@@ -1,0 +1,6 @@
+SYNTHETIC ACCREDITATION CERTIFICATE — NOT ISSUED BY ANY REAL AUTHORITY
+Institution ID: SYN-AICTE-1001
+Certificate reference: SYN-CERT-2002
+Issue date: 2025-01-01
+Expiry date: 2027-01-01
+Status in synthetic issuer registry: ACTIVE

@@ -1,0 +1,59 @@
+services:
+  # ============================================================================
+  # 1. FastAPI Regulatory & Document Verification Engine
+  # ============================================================================
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: aicte-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+      - PORT=8000
+      - HOST=0.0.0.0
+      - AICTE_DATASET_DIR=/app/data/synthetic_scenarios
+    volumes:
+      - backend_data:/app/data
+    networks:
+      - aicte-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  # ============================================================================
+  # 2. AICTE Scrutiny & Validation Portal (React Frontend + Nginx Proxy)
+  # ============================================================================
+  frontend:
+    build:
+      context: ./aicte-validation-portal
+      dockerfile: Dockerfile
+    container_name: aicte-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+      - "5173:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - aicte-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/healthz"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  backend_data:
+    driver: local
+
+networks:
+  aicte-network:
+    driver: bridge

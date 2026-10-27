@@ -1,0 +1,129 @@
+{
+  "dataset_notice": "All assertions are synthetic test expectations; not official AICTE regulatory outcomes.",
+  "assertions": [
+    {
+      "case_id": "AICTE-SYN-003",
+      "type": "mock_registry_match",
+      "submitted_reference": "SYN-NOC-5003",
+      "expected_registry_reference": "SYN-NOC-5003",
+      "expected_registry_status": "ACTIVE",
+      "expected_result": "MATCH"
+    },
+    {
+      "case_id": "AICTE-SYN-015",
+      "type": "sha256_duplicate",
+      "files": [
+        "synthetic_documents/applications/AICTE-SYN-015_attachment_A.txt",
+        "synthetic_documents/applications/AICTE-SYN-015_attachment_B.txt"
+      ],
+      "sha256_a": "c6de1226a015d148bd7f050e77a5895cbf0288fb2b4ddc2ca1c11547d067df2e",
+      "sha256_b": "c6de1226a015d148bd7f050e77a5895cbf0288fb2b4ddc2ca1c11547d067df2e",
+      "expected_hashes_equal": true,
+      "expected_result": "MANUAL_REVIEW"
+    },
+    {
+      "case_id": "AICTE-SYN-017",
+      "type": "pdf_metadata_vs_content_date",
+      "file": "synthetic_documents/applications/AICTE-SYN-017_undertaking_record.pdf",
+      "pdf_creation_date": "D:20240101000000Z",
+      "content_date": "2026-10-19",
+      "expected_result": "METADATA_ANOMALY_REQUIRES_REVIEW"
+    },
+    {
+      "case_id": "AICTE-SYN-018",
+      "type": "detached_cms_signature",
+      "payload": "synthetic_documents/signature_fixtures/AICTE-SYN-018_document.pdf",
+      "signature": "synthetic_documents/signature_fixtures/AICTE-SYN-018_signature.p7s",
+      "trust_root": "synthetic_documents/signature_fixtures/test_root_A.pem",
+      "expected_integrity": "VALID",
+      "expected_trust": "TRUSTED_SYNTHETIC_TEST_CA",
+      "pdf_embedded_signature": false
+    },
+    {
+      "case_id": "AICTE-SYN-019",
+      "type": "detached_cms_signature_after_byte_change",
+      "payload": "synthetic_documents/signature_fixtures/AICTE-SYN-019_document.pdf",
+      "signature": "synthetic_documents/signature_fixtures/AICTE-SYN-019_signature.p7s",
+      "trust_root": "synthetic_documents/signature_fixtures/test_root_A.pem",
+      "expected_integrity": "INVALID_PAYLOAD_MISMATCH",
+      "expected_trust": "NOT_REACHED",
+      "pdf_embedded_signature": false
+    },
+    {
+      "case_id": "AICTE-SYN-020",
+      "type": "qr_payload_decode",
+      "file": "synthetic_documents/identity_and_authority_docs/AICTE-SYN-020_certificate_qr_reference.png",
+      "expected_payload": {
+        "institution_id": "SYN-AICTE-1004",
+        "certificate_reference": "SYN-CERT-2005",
+        "status": "ACTIVE",
+        "issuer_id": "SYN-ISSUER-02",
+        "test_only": true
+      },
+      "expected_registry_reference": "SYN-CERT-2005",
+      "expected_registry_status": "ACTIVE",
+      "live_issuer_authentication": false
+    },
+    {
+      "case_id": "AICTE-SYN-023",
+      "type": "generated_visual_fixture",
+      "file": "synthetic_documents/infrastructure_evidence/synthetic_lab_visual_evidence_023.png",
+      "image_dimensions": [
+        1280,
+        900
+      ],
+      "provenance": "Generated illustration, not a real facility photo",
+      "expected_result": "POSSIBLE_GAP_REVIEW_ONLY"
+    },
+    {
+      "case_id": "AICTE-SYN-024",
+      "type": "generated_visual_fixture",
+      "file": "synthetic_documents/infrastructure_evidence/synthetic_classroom_visual_evidence_024.png",
+      "image_dimensions": [
+        1280,
+        900
+      ],
+      "provenance": "Generated illustration, not a real facility photo",
+      "expected_result": "PHYSICAL_REVIEW_RECOMMENDED"
+    },
+    {
+      "case_id": "AICTE-SYN-025",
+      "type": "generated_visual_fixture",
+      "file": "synthetic_documents/infrastructure_evidence/synthetic_library_visual_evidence_025.png",
+      "image_dimensions": [
+        1280,
+        900
+      ],
+      "provenance": "Generated illustration, not a real facility photo",
+      "expected_result": "ADDITIONAL_EVIDENCE_REQUIRED"
+    },
+    {
+      "case_id": "AICTE-SYN-026",
+      "type": "configurable_demo_rule",
+      "rule_id": "DEMO-008",
+      "program": "Computer Engineering",
+      "declared_faculty_count": 18,
+      "configured_review_threshold": 20,
+      "expected_result": "MANUAL_REVIEW",
+      "official_aicte_rule": false
+    },
+    {
+      "case_id": "AICTE-SYN-013",
+      "type": "image_only_ocr_fixture",
+      "file": "synthetic_documents/scanned_ocr/AICTE-SYN-013_application_scan.pdf",
+      "source_image": "synthetic_documents/scanned_ocr/AICTE-SYN-013_application_scan.png",
+      "page_count": 1,
+      "selectable_text_expected": false,
+      "expected_extraction_status": "LOW_CONFIDENCE"
+    },
+    {
+      "case_id": "AICTE-SYN-014",
+      "type": "image_only_ocr_fixture",
+      "file": "synthetic_documents/scanned_ocr/AICTE-SYN-014_undertaking_scan.pdf",
+      "source_image": "synthetic_documents/scanned_ocr/AICTE-SYN-014_undertaking_scan.png",
+      "page_count": 1,
+      "selectable_text_expected": false,
+      "expected_extraction_status": "LOW_CONFIDENCE"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+SYNTHETIC AUDIT ACTION INPUT — TEST DATA ONLY
+Institution ID: SYN-AICTE-1001
+Application reference: SYN-APP-0027
+Requested action: record an application evaluation event.
+Actor role provided by test harness: SCRUTINY_OFFICER

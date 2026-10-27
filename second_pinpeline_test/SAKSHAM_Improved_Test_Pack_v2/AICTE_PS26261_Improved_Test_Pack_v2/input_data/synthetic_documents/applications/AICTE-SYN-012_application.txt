@@ -1,0 +1,4 @@
+SYNTHETIC APPLICATION — TEST FIXTURE ONLY
+Institution ID: SYN-AICTE-1002
+Category: EoA
+TER payment reference: SYN-TER-3012
