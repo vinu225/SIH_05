@@ -15,6 +15,12 @@ services:
       - PORT=8000
       - HOST=0.0.0.0
       - AICTE_DATASET_DIR=/app/data/synthetic_scenarios
+      - SUPABASE_URL=${SUPABASE_URL:-}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY:-}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY:-}
+      - SUPABASE_DB_HOST=${SUPABASE_DB_HOST:-}
+      - SUPABASE_DB_PASSWORD=${SUPABASE_DB_PASSWORD:-}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY:-}
     volumes:
       - backend_data:/app/data
     networks:
@@ -33,6 +39,8 @@ services:
     build:
       context: ./aicte-validation-portal
       dockerfile: Dockerfile
+      args:
+        - VITE_CLERK_PUBLISHABLE_KEY=${VITE_CLERK_PUBLISHABLE_KEY:-}
     container_name: aicte-frontend
     restart: unless-stopped
     ports:

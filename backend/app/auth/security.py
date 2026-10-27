@@ -59,13 +59,30 @@ def get_current_user(
     but strictly parses and validates explicit roles when provided.
     """
     raw_role = x_api_role
+    clerk_user_id = None
     if not raw_role and authorization:
-        # Check bearer token role
         parts = authorization.split()
         if len(parts) == 2 and parts[0].lower() == "bearer":
-            token = parts[1].upper()
-            if token in UserRole.__members__:
-                raw_role = token
+            token_val = parts[1]
+            if token_val.upper() in UserRole.__members__:
+                raw_role = token_val.upper()
+            elif token_val.startswith("ey"):
+                # Clerk JWT session token
+                try:
+                    import jwt
+                    payload = jwt.decode(token_val, options={"verify_signature": False})
+                    clerk_user_id = payload.get("sub")
+                    meta_role = (
+                        payload.get("metadata", {}).get("role")
+                        or payload.get("role")
+                        or payload.get("org_role")
+                    )
+                    if meta_role and str(meta_role).upper() in UserRole.__members__:
+                        raw_role = str(meta_role).upper()
+                    else:
+                        raw_role = UserRole.SCRUTINY_OFFICER.value
+                except Exception:
+                    pass
 
     role_str = (raw_role or UserRole.SCRUTINY_OFFICER.value).upper()
     try:
@@ -76,7 +93,7 @@ def get_current_user(
             detail=f"Invalid user role: '{role_str}'. Valid roles: {[r.value for r in UserRole]}",
         )
 
-    user_id = x_user_id or f"USER-{role.value}"
+    user_id = clerk_user_id or x_user_id or f"USER-{role.value}"
     badge_id = x_badge_id or "AICTE-OFFICER-001"
     permissions = list(ROLE_PERMISSIONS.get(role, set()))
 
