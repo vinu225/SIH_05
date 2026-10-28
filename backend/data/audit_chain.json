@@ -19162,5 +19162,53 @@
     },
     "previous_hash": "47d290858dc704d698ef9edf965e5d407f542ee23985f1b60dbd803b401637b7",
     "event_hash": "f50e584d109e739dfcc159a9b3051b6b936cd4c2f6082fdecfe9a9bed3f9a9f7"
+  },
+  {
+    "event_id": "EVT-01203",
+    "sequence_number": 1203,
+    "timestamp": "2026-10-28T09:50:40.035433",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 7,
+      "scenario_id": "INST-01-COMPLIANT",
+      "overall_status": "Compliant"
+    },
+    "previous_hash": "f50e584d109e739dfcc159a9b3051b6b936cd4c2f6082fdecfe9a9bed3f9a9f7",
+    "event_hash": "cd5abbf25889fc0fff337db348dcf953f69b8ab8aca39a5f7f7069bf80962333"
+  },
+  {
+    "event_id": "EVT-01204",
+    "sequence_number": 1204,
+    "timestamp": "2026-10-28T10:09:12.843636",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 7,
+      "scenario_id": "INST-01-COMPLIANT",
+      "overall_status": "Compliant"
+    },
+    "previous_hash": "cd5abbf25889fc0fff337db348dcf953f69b8ab8aca39a5f7f7069bf80962333",
+    "event_hash": "a6355d756941b3b32c7893a1bb31901a38681ee3dd0638b4b688bea1f3edeaf3"
+  },
+  {
+    "event_id": "EVT-01205",
+    "sequence_number": 1205,
+    "timestamp": "2026-10-28T10:11:34.373122",
+    "actor_id": "SYSTEM_AUTO_SCRUTINY",
+    "role": "SYSTEM_AUTOMATION",
+    "action": "EVALUATE_APPLICATION",
+    "target_application_id": "APP-2024-INST-01-COMPLIANT",
+    "details": {
+      "findings_count": 7,
+      "scenario_id": "INST-01-COMPLIANT",
+      "overall_status": "Compliant"
+    },
+    "previous_hash": "a6355d756941b3b32c7893a1bb31901a38681ee3dd0638b4b688bea1f3edeaf3",
+    "event_hash": "a80a41f62b219d9c52933ec016478a027bc2abb1fb4b8e7f4b8f88d614f5a00a"
   }
 ]
