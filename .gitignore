@@ -118,3 +118,38 @@ aicte_institutions.rar
 *.log
 *.tmp
 *.bak
+
+# ==============================================================================
+# Presentation Decks, Videos, Demos & Unnecessary Media
+# ==============================================================================
+ppt/
+**/ppt/
+*.ppt
+*.pptx
+*.key
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+*.webp
+
+# Root level loose images, generated PDFs and demo scripts
+/*.png
+/*.jpg
+/*.jpeg
+/*.pdf
+!aicte-validation-portal/public/*.pdf
+demo_video_script.md
+generate_deficiency_pdf.py
+tech_stack_*.jpg
+deficiency_report_*.png
+Consolidated_Deficiency_Report.pdf
+
+# Documentation drafts & scratch
+docs/
+scratch/
+temp/
+tmp/
+*.docx
+*.xlsx
